@@ -1,30 +1,66 @@
-[gd_scene load_steps=13 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=19 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
-[ext_resource type="Texture2D" uid="uid://cbss87b7xk5lc" path="res://Assets/Spritesheet/platformerPack_character.png" id="2_q0cxm"]
+[ext_resource type="Texture2D" uid="uid://f1li68ube7be" path="res://Assets/Spritesheet/SPRITE_Player.png" id="2_fowun"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57bci"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(0, 0, 96, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tyi0"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 0, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2um1"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(96, 0, 96, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_juuci"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 0, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjvmv"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(192, 0, 96, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqroo"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 1024, 1024, 1024)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3yh2"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(288, 0, 96, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ty5o"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 1024, 1024, 1024)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4nss6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxfdf"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 2048, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue74x"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ddj"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynhl6"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfrkl"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj8sd"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 2048, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5kyp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_57bci")
+"texture": SubResource("AtlasTexture_2tyi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juuci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqroo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ty5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxfdf")
 }],
 "loop": true,
 "name": &"Idle",
@@ -32,18 +68,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y2um1")
-}],
-"loop": true,
-"name": &"Jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjvmv")
+"texture": SubResource("AtlasTexture_ue74x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k3yh2")
+"texture": SubResource("AtlasTexture_j7ddj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynhl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfrkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj8sd")
 }],
 "loop": true,
 "name": &"Walk",
@@ -69,8 +106,10 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 script = ExtResource("1_qt7d6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4nss6")
-animation = &"Walk"
+position = Vector2(0, 12.755)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_k5kyp")
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
