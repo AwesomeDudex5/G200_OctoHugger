@@ -68,19 +68,14 @@ z_index = 1
 position = Vector2(150, 318)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(16, 36)
-limit_left = 0
-limit_right = 1985
-limit_bottom = 705
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.4
-drag_top_margin = 0.4
-drag_right_margin = 0.4
-drag_bottom_margin = 0.4
-editor_draw_limits = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 editor_draw_drag_margin = true
 
 [node name="Coins" type="Node2D" parent="."]
