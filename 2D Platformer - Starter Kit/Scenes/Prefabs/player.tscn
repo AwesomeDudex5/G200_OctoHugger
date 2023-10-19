@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=24 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://f1li68ube7be" path="res://Assets/Spritesheet/SPRITE_Player.png" id="2_fowun"]
@@ -21,6 +21,26 @@ atlas = ExtResource("2_fowun")
 region = Rect2(1024, 1024, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxfdf"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 2048, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgkfk"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwhj2"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as8by"]
+atlas = ExtResource("2_fowun")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbhln"]
+atlas = ExtResource("2_fowun")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnnc7"]
 atlas = ExtResource("2_fowun")
 region = Rect2(0, 2048, 1024, 1024)
 
@@ -68,6 +88,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vgkfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwhj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as8by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbhln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnnc7")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ue74x")
 }, {
 "duration": 1.0,
@@ -109,7 +149,7 @@ script = ExtResource("1_qt7d6")
 position = Vector2(0, 12.755)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_k5kyp")
-animation = &"Idle"
+animation = &"Jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)

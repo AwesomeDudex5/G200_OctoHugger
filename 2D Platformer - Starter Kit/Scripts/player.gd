@@ -3,11 +3,11 @@ extends CharacterBody2D
 # --------- VARIABLES ---------- #
 
 @export_category("Player Properties") # You can tweak these changes according to your likings
-@export var move_speed : float = 400
-@export var jump_force : float = 600
-@export var gravity : float = 30
+@export var move_speed : float = 300 # original = 400
+@export var jump_force : float = -350 # original = 600
+@export var gravity : float = -3 # original = 30
 @export var max_jump_count : int = 2
-var jump_count : int = 2
+var jump_count : int = 1
 
 @export_category("Toggle Functions") # Double jump feature is disable by default (Can be toggled from inspector)
 @export var double_jump : = false
@@ -32,10 +32,10 @@ func _process(_delta):
 # <-- Player Movement Code -->
 func movement():
 	# Gravity
-	if !is_on_floor():
-		velocity.y += gravity
-	elif is_on_floor():
-		jump_count = max_jump_count
+	#if !is_on_floor():
+	velocity.y += gravity
+	#elif is_on_floor():
+		#jump_count = max_jump_count
 	
 	handle_jumping()
 	
@@ -47,11 +47,12 @@ func movement():
 # Handles jumping functionality (double jump or single jump, can be toggled from inspector)
 func handle_jumping():
 	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor() and !double_jump:
-			jump()
-		elif double_jump and jump_count > 0:
-			jump()
-			jump_count -= 1
+#		if is_on_floor() and !double_jump:
+#			jump()
+#		elif double_jump and jump_count > 0:
+#			jump()
+#			jump_count -= 1
+		jump()
 
 # Player jump
 func jump():
