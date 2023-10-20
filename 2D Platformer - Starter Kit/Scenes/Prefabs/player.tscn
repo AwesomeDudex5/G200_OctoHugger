@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=27 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://f1li68ube7be" path="res://Assets/Spritesheet/SPRITE_Player.png" id="2_fowun"]
-[ext_resource type="Texture2D" uid="uid://cbss87b7xk5lc" path="res://Assets/Spritesheet/platformerPack_character.png" id="2_tkym0"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
+[ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="3_ffufh"]
 
 [sub_resource type="Curve" id="Curve_m2jh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -13,13 +13,9 @@ point_count = 3
 offsets = PackedFloat32Array(0.25, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4slic"]
-atlas = ExtResource("2_tkym0")
-region = Rect2(0, 96, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fuy34"]
-atlas = ExtResource("2_tkym0")
-region = Rect2(96, 96, 96, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgkba"]
+atlas = ExtResource("3_ffufh")
+region = Rect2(0, 0, 705, 725)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tyi0"]
 atlas = ExtResource("2_fowun")
@@ -85,10 +81,7 @@ region = Rect2(0, 2048, 1024, 1024)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4slic")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fuy34")
+"texture": SubResource("AtlasTexture_cgkba")
 }],
 "loop": true,
 "name": &"Hug",
@@ -190,8 +183,7 @@ color_ramp = SubResource("Gradient_3gc37")
 position = Vector2(0, 12.755)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_k5kyp")
-animation = &"Idle"
-frame_progress = 0.40937
+animation = &"Hug"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)

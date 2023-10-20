@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=17 format=3 uid="uid://cjanwm3sy2x37"]
 
+[ext_resource type="Script" path="res://Scripts/Level_Manager.gd" id="1_j30ly"]
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
@@ -66,6 +67,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
 [node name="Level_01" type="Node2D"]
+script = ExtResource("1_j30ly")
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
 z_index = 1
@@ -195,3 +197,5 @@ text = "x 3"
 position = Vector2(158, 170)
 script = ExtResource("11_36tr0")
 NPC_Prefab = ExtResource("10_6jpv4")
+
+[node name="Huggable NPC ver 2" parent="." instance=ExtResource("10_6jpv4")]

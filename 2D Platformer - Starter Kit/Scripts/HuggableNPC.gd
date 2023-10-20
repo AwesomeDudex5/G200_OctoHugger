@@ -8,6 +8,8 @@ extends CharacterBody2D
 var postive_range : float
 var negative_range : float
 
+var player : CharacterBody2D
+
 #--------
 @onready var hug_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer
@@ -29,6 +31,11 @@ func _process(delta):
 		if new_x > (postive_range) or new_x < (negative_range):
 			direction *= -1
 		position.x = new_x
+		
+#	if (hugged):  # NOT WORKING - npc following player as it floats
+#		position.y = player.position.y
+	
+		
 
 
 func _set_hug():
@@ -54,10 +61,22 @@ func _set_hug():
 #	elif velocity.x > 0:
 #		hug_sprite.flip_h = false
 #
-#func huggable():
-#	return
+func huggable():
+	return
 #
 #func _on_timer_timeout():
 #	add_child(load("res://Scenes/Prefabs/huggable_npc.tscn").instantiate())
 #	#queue_free()
+
+
+
+func _on_hug_collision_body_entered(body):
+	if body.has_method("player"):
+		player = body
+
+
+
+func _on_hug_collision_body_exited(body):
+	hugged = false
+
 

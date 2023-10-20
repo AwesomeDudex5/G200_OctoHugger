@@ -3,9 +3,12 @@ extends CharacterBody2D
 # --------- VARIABLES ---------- #
 
 @export_category("Player Properties") # You can tweak these changes according to your likings
-@export var move_speed : float = 300 # original = 400
-@export var jump_force : float = -350 # original = 600
-@export var gravity : float = -3 # original = 30
+
+# FLOATING MOVEMENT VARIABLES ------------------
+@export var move_speed : float = 300 # original = 400 - X AXIS MOVEMENT SPEED
+@export var jump_force : float = -350 # original = 600 - FORCE GOING DOWNWARD WHEN PLAYER PRESSES SPACE BAR
+@export var gravity : float = -5 # original = 30 - FLOATING SPEED VARIABLE, MOVING UPWARD
+
 @export var max_jump_count : int = 2
 var jump_count : int = 1
 
@@ -148,5 +151,8 @@ func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
 		huggable_body.hug_sprite.play("Default")
 		player_sprite.play("Walk")
 		#huggable_body = null
+		
+func player():
+	pass
 
 
