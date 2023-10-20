@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dimslee4b2y5h"]
+
+[ext_resource type="Script" path="res://Scripts/HuggableNPC.gd" id="1_q362j"]
+[ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="2_biik4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptmpi"]
+size = Vector2(149, 152)
+
+[node name="Huggable NPC ver 2" type="CharacterBody2D" groups=["Friend"]]
+wall_min_slide_angle = 0.0
+script = ExtResource("1_q362j")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -2)
+shape = SubResource("RectangleShape2D_ptmpi")
+debug_color = Color(0.12549, 0.231373, 0.482353, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.185, 0.185)
+texture = ExtResource("2_biik4")

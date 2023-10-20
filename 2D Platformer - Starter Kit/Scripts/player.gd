@@ -79,7 +79,7 @@ func jump():
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
-	huggable_body.hug_sprite.play("Hugged")
+	#huggable_body.hug_sprite.play("Hugged")
 
 # Handle Player Animations
 func player_animations():
@@ -129,6 +129,12 @@ func _on_collision_body_entered(_body):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
+	if _body.is_in_group("Friend"):
+		can_hug = true
+		if _body.has_method("_set_hug"):
+			_body._set_hug()
+		
+
 
 
 func _on_area_2d_hug_body_entered(body): # within reach of a huggable npc
