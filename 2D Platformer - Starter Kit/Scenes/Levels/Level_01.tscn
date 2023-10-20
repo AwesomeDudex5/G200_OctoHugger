@@ -73,7 +73,7 @@ position = Vector2(1304, 400)
 next_scene = ExtResource("2_0ac5u")
 
 [node name="Huggable_NPC" parent="." instance=ExtResource("10_wuel0")]
-position = Vector2(381, 220)
+position = Vector2(1110, 235)
 
 [node name="Player" parent="." instance=ExtResource("2_pay8t")]
 z_index = 1
@@ -92,6 +92,7 @@ drag_bottom_margin = 0.0
 editor_draw_drag_margin = true
 
 [node name="Coins" type="Node2D" parent="."]
+visible = false
 
 [node name="Coin" parent="Coins" instance=ExtResource("3_rrh80")]
 position = Vector2(576, 406)
@@ -161,6 +162,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_66mfc")
+metadata/_edit_lock_ = true
 
 [node name="Score" type="Control" parent="UserInterface/GameUI"]
 unique_name_in_owner = true
@@ -193,5 +195,6 @@ theme_override_font_sizes/font_size = 32
 text = "x 3"
 
 [node name="enemy" parent="." instance=ExtResource("11_p6ov2")]
+visible = false
 position = Vector2(398, 353)
 motion_mode = 1

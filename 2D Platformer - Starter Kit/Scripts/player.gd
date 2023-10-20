@@ -25,6 +25,9 @@ var hug_count: int = 0
 @onready var death_particles = $DeathParticles
 @onready var hug_particles = $Hug
 
+#TRY ATTACHING THE HUGGABLE NPC TO THE PLAYER ???
+
+
 # --------- BUILT-IN FUNCTIONS ---------- #
 
 func _process(_delta):
@@ -138,6 +141,6 @@ func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
 		can_hug = false
 		huggable_body.hug_sprite.play("Default")
 		player_sprite.play("Walk")
-		huggable_body = null
+		#huggable_body = null
 
 
