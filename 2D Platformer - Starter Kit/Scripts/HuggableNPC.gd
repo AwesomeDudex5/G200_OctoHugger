@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @export var canMove : float #random token to set if NPC will move or not
-@export var movement_speed = 200
+@export var max_movement_speed = 200
+var stop_speed = 0
+var current_movement_speed
 @export var movement_range = 100
 @export var direction = 1
 
@@ -18,7 +20,8 @@ var hugged : bool = false
 func _ready():
 	postive_range = position.x + movement_range
 	negative_range = position.x - movement_range
-	movement_speed = randf_range(50, movement_speed)
+	max_movement_speed = randf_range(50, max_movement_speed)
+	current_movement_speed = max_movement_speed
 	canMove = (randi() % 2)
 
 
@@ -27,7 +30,7 @@ func _process(delta):
 	#var velocity = Vector2(movement_speed * direction, 0)
 	#move_and_slide()
 	if(canMove > 0):
-		var new_x = position.x + (movement_speed * direction * delta)
+		var new_x = position.x + (current_movement_speed * direction * delta)
 		if new_x > (postive_range) or new_x < (negative_range):
 			direction *= -1
 		position.x = new_x
@@ -40,7 +43,7 @@ func _process(delta):
 
 func _set_hug():
 	hugged = true	
-	movement_speed = 0
+	current_movement_speed = stop_speed
 
 
 #func _physics_process(delta):
@@ -68,15 +71,12 @@ func huggable():
 #	add_child(load("res://Scenes/Prefabs/huggable_npc.tscn").instantiate())
 #	#queue_free()
 
-
-
 func _on_hug_collision_body_entered(body):
 	if body.has_method("player"):
 		player = body
 
-
-
 func _on_hug_collision_body_exited(body):
+	current_movement_speed = max_movement_speed
 	hugged = false
 
 

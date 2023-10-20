@@ -3,6 +3,7 @@
 extends Node2D
 
 var score : int = 0
+var friendsHugged = 0
 
 # Adds 1 to score variable
 func add_score():

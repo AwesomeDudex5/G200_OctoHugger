@@ -71,7 +71,7 @@ script = ExtResource("1_j30ly")
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
 z_index = 1
-position = Vector2(1304, 400)
+position = Vector2(1307, 524)
 next_scene = ExtResource("2_0ac5u")
 
 [node name="Player" parent="." groups=["Enemy"] instance=ExtResource("2_pay8t")]

@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var move_speed : float = 300 # original = 400 - X AXIS MOVEMENT SPEED
 @export var jump_force : float = -350 # original = 600 - FORCE GOING DOWNWARD WHEN PLAYER PRESSES SPACE BAR
 @export var gravity : float = -5 # original = 30 - FLOATING SPEED VARIABLE, MOVING UPWARD
+var jump_direction = -1 #based on up and down input will change to 1 or -1
 
 @export var max_jump_count : int = 2
 var jump_count : int = 1
@@ -58,6 +59,8 @@ func movement():
 	handle_jumping()
 	
 	# Move Player
+	var up_down_input = Input.get_axis("Down", "Up")
+	jump_direction = up_down_input
 	var inputAxis = Input.get_axis("Left", "Right")
 	velocity = Vector2(inputAxis * move_speed, velocity.y)
 	move_and_slide()
@@ -65,23 +68,22 @@ func movement():
 # Handles jumping functionality (double jump or single jump, can be toggled from inspector)
 func handle_jumping():
 	if Input.is_action_just_pressed("Jump"):
-#		if is_on_floor() and !double_jump:
-#			jump()
-#		elif double_jump and jump_count > 0:
-#			jump()
-#			jump_count -= 1
 		jump()
 
 # Player jump
 func jump():
 	jump_tween()
 	AudioManager.jump_sfx.play()
-	velocity.y = -jump_force
+	if(jump_direction != 0):
+		velocity.y = jump_force * jump_direction
+	else:
+		velocity.y = -jump_force
 	
 # Player "Hug" / Interact
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
+	GameManager.add_score()
 	#huggable_body.hug_sprite.play("Hugged")
 
 # Handle Player Animations
