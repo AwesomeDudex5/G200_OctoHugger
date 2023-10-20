@@ -1,8 +1,25 @@
-[gd_scene load_steps=24 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=28 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://f1li68ube7be" path="res://Assets/Spritesheet/SPRITE_Player.png" id="2_fowun"]
+[ext_resource type="Texture2D" uid="uid://cbss87b7xk5lc" path="res://Assets/Spritesheet/platformerPack_character.png" id="2_tkym0"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
+
+[sub_resource type="Curve" id="Curve_m2jh0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_3gc37"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4slic"]
+atlas = ExtResource("2_tkym0")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuy34"]
+atlas = ExtResource("2_tkym0")
+region = Rect2(96, 96, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tyi0"]
 atlas = ExtResource("2_fowun")
@@ -66,6 +83,17 @@ region = Rect2(0, 2048, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k5kyp"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4slic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuy34")
+}],
+"loop": true,
+"name": &"Hug",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2tyi0")
@@ -134,22 +162,36 @@ height = 66.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbjh"]
 size = Vector2(58, 69)
 
-[sub_resource type="Curve" id="Curve_m2jh0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_3gc37"]
-offsets = PackedFloat32Array(0.25, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2mwhp"]
+radius = 58.5
+height = 270.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_qt7d6")
 
+[node name="ParticleTrails" type="CPUParticles2D" parent="."]
+position = Vector2(0, 42)
+amount = 20
+lifetime = 0.4
+speed_scale = 0.8
+texture = ExtResource("3_8vxmb")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, -6)
+damping_min = 1.0
+damping_max = 1.0
+scale_amount_min = 0.3
+scale_amount_curve = SubResource("Curve_m2jh0")
+color = Color(0.054902, 0.054902, 0.054902, 1)
+color_ramp = SubResource("Gradient_3gc37")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 12.755)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_k5kyp")
-animation = &"Jump"
+animation = &"Idle"
+frame_progress = 0.40937
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
@@ -161,23 +203,12 @@ shape = SubResource("CapsuleShape2D_n4sts")
 position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_tvbjh")
 
-[node name="ParticleTrails" type="CPUParticles2D" parent="."]
-position = Vector2(0, 42)
-emitting = false
-amount = 20
-lifetime = 0.4
-speed_scale = 0.8
-texture = ExtResource("3_8vxmb")
-emission_shape = 1
-emission_sphere_radius = 5.0
-direction = Vector2(0, 0)
-gravity = Vector2(0, 0)
-damping_min = 1.0
-damping_max = 1.0
-scale_amount_min = 0.2
-scale_amount_max = 0.6
-scale_amount_curve = SubResource("Curve_m2jh0")
-color_ramp = SubResource("Gradient_3gc37")
+[node name="Area2DHug" type="Area2D" parent="."]
+position = Vector2(1, 14.5)
+
+[node name="CollisionShapeHug" type="CollisionShape2D" parent="Area2DHug"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2mwhp")
 
 [node name="DeathParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-1, 15)
@@ -199,4 +230,15 @@ scale_amount_max = 30.0
 scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
+[node name="HugParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 12.755)
+scale = Vector2(0.1, 0.1)
+emitting = false
+lifetime = 0.6
+one_shot = true
+gravity = Vector2(0, -3.235)
+initial_velocity_max = 4.66
+
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
+[connection signal="body_entered" from="Area2DHug" to="." method="_on_area_2d_hug_body_entered"]
+[connection signal="body_exited" from="Area2DHug" to="." method="_on_area_2d_hug_body_exited"]

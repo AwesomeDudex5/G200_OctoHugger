@@ -13,11 +13,17 @@ var jump_count : int = 1
 @export var double_jump : = false
 
 var is_grounded : bool = false
+var can_hug : bool = false
+var huggable_body: CharacterBody2D 
+var is_hugging: bool = false
+
+var hug_count: int = 0
 
 @onready var player_sprite = $AnimatedSprite2D
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
+@onready var hug_particles = $Hug
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 
@@ -27,6 +33,12 @@ func _process(_delta):
 	player_animations()
 	flip_player()
 	
+	
+	
+func _unhandled_input(event):
+	if Input.is_action_pressed("Interact") and can_hug:
+		hug()
+		
 # --------- CUSTOM FUNCTIONS ---------- #
 
 # <-- Player Movement Code -->
@@ -59,18 +71,24 @@ func jump():
 	jump_tween()
 	AudioManager.jump_sfx.play()
 	velocity.y = -jump_force
+	
+# Player "Hug" / Interact
+func hug():
+	is_hugging = true
+	player_sprite.play("Hug")
+	huggable_body.hug_sprite.play("Hugged")
 
 # Handle Player Animations
 func player_animations():
-	particle_trails.emitting = false
+	particle_trails.emitting = true
 	
 	if is_on_floor():
-		if abs(velocity.x) > 0:
+		if abs(velocity.x) > 0 and not is_hugging:
 			particle_trails.emitting = true
 			player_sprite.play("Walk", 1.5)
-		else:
+		elif not is_hugging:
 			player_sprite.play("Idle")
-	else:
+	elif not is_hugging:
 		player_sprite.play("Jump")
 
 # Flip player sprite based on X velocity
@@ -108,3 +126,18 @@ func _on_collision_body_entered(_body):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
+
+
+func _on_area_2d_hug_body_entered(body): # within reach of a huggable npc
+	if body.has_method("huggable"):
+		can_hug = true
+		huggable_body = body # ref to CharacterBody2D that entered
+
+func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
+	if body.has_method("huggable"):
+		can_hug = false
+		huggable_body.hug_sprite.play("Default")
+		player_sprite.play("Walk")
+		huggable_body = null
+
+

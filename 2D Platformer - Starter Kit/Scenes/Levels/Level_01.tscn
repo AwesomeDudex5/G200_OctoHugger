@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=16 format=3 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_66mfc"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
+[ext_resource type="PackedScene" uid="uid://ckdg2jsmbb8v2" path="res://Scenes/Prefabs/huggable_npc.tscn" id="10_wuel0"]
+[ext_resource type="PackedScene" uid="uid://ddiak7fdryoea" path="res://Scenes/Prefabs/enemy.tscn" id="11_p6ov2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("5_wqbaa")
@@ -70,9 +72,13 @@ z_index = 1
 position = Vector2(1304, 400)
 next_scene = ExtResource("2_0ac5u")
 
+[node name="Huggable_NPC" parent="." instance=ExtResource("10_wuel0")]
+position = Vector2(381, 220)
+
 [node name="Player" parent="." instance=ExtResource("2_pay8t")]
 z_index = 1
 position = Vector2(150, 318)
+gravity = -1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_smoothed = true
@@ -113,6 +119,7 @@ unique_name_in_owner = true
 position = Vector2(174, 383)
 
 [node name="TutorialText" type="Node2D" parent="."]
+visible = false
 
 [node name="Movement" type="Label" parent="TutorialText"]
 offset_left = 264.0
@@ -184,3 +191,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_gwcy2")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
+
+[node name="enemy" parent="." instance=ExtResource("11_p6ov2")]
+position = Vector2(398, 353)
+motion_mode = 1
