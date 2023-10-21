@@ -18,7 +18,7 @@ var jump_count : int = 1
 
 var is_grounded : bool = false
 var can_hug : bool = false
-var huggable_body: CharacterBody2D 
+var huggable_body
 var is_hugging: bool = false
 
 var hug_count: int = 0
@@ -52,10 +52,14 @@ func _unhandled_input(event):
 func movement():
 	# Gravity
 	#if !is_on_floor():
-	velocity.y += gravity
+#	if(is_hugging == false):
+#		velocity.y += gravity
+#	else:
+#		velocity.y = 0
 	#elif is_on_floor():
 		#jump_count = max_jump_count
 	
+	velocity.y += gravity
 	handle_jumping()
 	
 	# Move Player
@@ -83,6 +87,9 @@ func jump():
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
+	if huggable_body.has_method("_set_hug"):
+			huggable_body._set_hug(jump_direction, velocity.y)
+			velocity.y = 0
 	GameManager.add_score()
 	#huggable_body.hug_sprite.play("Hugged")
 
@@ -136,8 +143,8 @@ func _on_collision_body_entered(_body):
 		death_tween()
 	if _body.is_in_group("Friend"):
 		can_hug = true
-		if _body.has_method("_set_hug"):
-			_body._set_hug()
+#		if _body.has_method("_set_hug"):
+#			_body._set_hug()
 		
 
 
@@ -150,6 +157,7 @@ func _on_area_2d_hug_body_entered(body): # within reach of a huggable npc
 func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
 	if body.has_method("huggable"):
 		can_hug = false
+		is_hugging = false
 		huggable_body.hug_sprite.play("Default")
 		player_sprite.play("Walk")
 		#huggable_body = null

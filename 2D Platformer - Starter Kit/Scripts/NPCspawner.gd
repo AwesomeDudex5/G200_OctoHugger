@@ -12,7 +12,7 @@ func spawn_NPCs():
 		var randX = randf_range(position.x - spawnRange, position.x + spawnRange)
 		var randY = randf_range(position.y - spawnRange, position.y + spawnRange)
 		var newInstance = NPC_Prefab.instantiate()
-		print("Pos: ", Vector2(randX, randY))
+		# print("Pos: ", Vector2(randX, randY))
 		newInstance.position = Vector2(randX, randY)
 		add_child(newInstance)
 	

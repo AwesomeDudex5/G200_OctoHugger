@@ -10,7 +10,11 @@ var current_movement_speed
 var postive_range : float
 var negative_range : float
 
-var player : CharacterBody2D
+var player
+var jump_velocity
+var jump_direction
+var jump_force : float = -350
+var initial_velocity = 0
 
 #--------
 @onready var hug_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -34,6 +38,13 @@ func _process(delta):
 		if new_x > (postive_range) or new_x < (negative_range):
 			direction *= -1
 		position.x = new_x
+	
+#	if(hugged == true && player != null):
+#		velocity.y = jump_force * jump_direction
+#		velocity = Vector2(0, velocity.y)
+#	else:
+#		velocity.y = initial_velocity
+#	move_and_slide()
 		
 #	if (hugged):  # NOT WORKING - npc following player as it floats
 #		position.y = player.position.y
@@ -41,9 +52,12 @@ func _process(delta):
 		
 
 
-func _set_hug():
+func _set_hug(playerDirection, playerVelocity):
 	hugged = true	
 	current_movement_speed = stop_speed
+	jump_velocity = playerVelocity
+	jump_direction = playerDirection
+	
 
 
 #func _physics_process(delta):
@@ -77,6 +91,7 @@ func _on_hug_collision_body_entered(body):
 
 func _on_hug_collision_body_exited(body):
 	current_movement_speed = max_movement_speed
+	player = null
 	hugged = false
 
 
