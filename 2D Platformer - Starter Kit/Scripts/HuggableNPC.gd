@@ -35,15 +35,17 @@ func _process(delta):
 			direction *= -1
 		position.x = new_x
 		
-#	if (hugged):  # NOT WORKING - npc following player as it floats
-#		position.y = player.position.y
+	if (hugged):  # NOT WORKING - npc following player as it floats
+		current_movement_speed = stop_speed
+		position.x = lerp(position.x, player.position.x, 0.1)
+		position.y = lerp(position.y, player.position.y, 0.1)
 	
 		
 
 
 func _set_hug():
-	hugged = true	
-	current_movement_speed = stop_speed
+	hugged = true
+	#current_movement_speed = stop_speed
 
 
 #func _physics_process(delta):
