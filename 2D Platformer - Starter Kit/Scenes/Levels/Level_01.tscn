@@ -240,7 +240,7 @@ visible = false
 [node name="BubbleParticles" parent="." instance=ExtResource("13_hw8ol")]
 position = Vector2(0, 1000)
 amount = 20
-lifetime = 5.0
+lifetime = 20.0
 texture = ExtResource("14_du53r")
 scale_amount_min = 0.1
 scale_amount_max = 0.1
@@ -248,7 +248,7 @@ scale_amount_max = 0.1
 [node name="BubbleParticles2" parent="." instance=ExtResource("13_hw8ol")]
 position = Vector2(0, 900)
 amount = 20
-lifetime = 5.0
+lifetime = 20.0
 texture = ExtResource("15_62d5k")
 scale_amount_min = 0.1
 scale_amount_max = 0.1

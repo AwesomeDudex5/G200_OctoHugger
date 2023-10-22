@@ -18,6 +18,7 @@ var player : CharacterBody2D
 var hugged : bool = false
 
 func _ready():
+	randomize()
 	postive_range = position.x + movement_range
 	negative_range = position.x - movement_range
 	max_movement_speed = randf_range(50, max_movement_speed)
@@ -35,19 +36,20 @@ func _process(delta):
 			direction *= -1
 		position.x = new_x
 		
-	if (hugged):  # NOT WORKING - npc following player as it floats
-		current_movement_speed = stop_speed
-		position.x = lerp(position.x, player.position.x, 0.1)
-		position.y = lerp(position.y, player.position.y, 0.1)
+	if (hugged):  # npc following player as it floats
+		#current_movement_speed = stop_speed
+		move_toward(player.position.x, player.position.y, delta)
+		#print (position.x, position.y)
 	
-		
+	move_and_slide()
 
 
 func _set_hug():
 	hugged = true
 	#current_movement_speed = stop_speed
 
-
+func let_go():
+	hugged = false
 #func _physics_process(delta):
 #
 #	velocity.x += movement_speed

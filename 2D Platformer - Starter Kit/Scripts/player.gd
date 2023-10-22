@@ -28,6 +28,8 @@ var hug_count: int = 0
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
 @onready var hug_particles = $Hug
+@onready var arrow_up: = $ArrowUp
+@onready var arrow_down: =  $ArrowDown
 
 #TRY ATTACHING THE HUGGABLE NPC TO THE PLAYER ???
 
@@ -43,24 +45,26 @@ func _process(_delta):
 	
 	
 func _unhandled_input(event):
-	if Input.is_action_pressed("Interact") and can_hug:
+	if Input.is_action_just_pressed("Interact") and can_hug:
 		hug()
-		
+	elif Input.is_action_just_pressed("Interact") and is_hugging:
+		let_go()
+		#pass
 # --------- CUSTOM FUNCTIONS ---------- #
 
 # <-- Player Movement Code -->
 func movement():
 	# Gravity
-	#if !is_on_floor():
 	velocity.y += gravity
-	#elif is_on_floor():
-		#jump_count = max_jump_count
 	
 	handle_jumping()
 	
 	# Move Player
 	var up_down_input = Input.get_axis("Down", "Up")
+	handle_arrow(up_down_input)
 	jump_direction = up_down_input
+
+		
 	var inputAxis = Input.get_axis("Left", "Right")
 	velocity = Vector2(inputAxis * move_speed, velocity.y)
 	move_and_slide()
@@ -78,13 +82,27 @@ func jump():
 		velocity.y = jump_force * jump_direction
 	else:
 		velocity.y = -jump_force
+func handle_arrow(up_down_input):
+	# Showing Up / Down Arrow
+	if up_down_input > 0:
+		arrow_up.visible = true
+		arrow_down.visible = false
+	else:
+		arrow_down.visible = true
+		arrow_up.visible = false
 	
 # Player "Hug" / Interact
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
 	GameManager.add_score()
+	huggable_body._set_hug()
 	#huggable_body.hug_sprite.play("Hugged")
+
+func let_go():
+	is_hugging = false
+	player_sprite.play("Walk")
+	huggable_body.let_go()
 
 # Handle Player Animations
 func player_animations():

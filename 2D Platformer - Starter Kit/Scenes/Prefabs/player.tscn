@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=28 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
 [ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="3_ffufh"]
 [ext_resource type="Texture2D" uid="uid://bqkwy25o6m4c6" path="res://Assets/Spritesheet/octo_and_bubbles.png" id="4_v11cj"]
+[ext_resource type="Texture2D" uid="uid://ds1v7mlqvy1e7" path="res://Assets/Spritesheet/Arrow_TMP.png" id="5_knsc8"]
 
 [sub_resource type="Curve" id="Curve_m2jh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -230,6 +231,19 @@ lifetime = 0.6
 one_shot = true
 gravity = Vector2(0, -3.235)
 initial_velocity_max = 4.66
+
+[node name="ArrowUp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -73.295)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_knsc8")
+
+[node name="ArrowDown" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 101.445)
+rotation = 3.14159
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_knsc8")
 
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
 [connection signal="body_entered" from="Area2DHug" to="." method="_on_area_2d_hug_body_entered"]
