@@ -146,22 +146,6 @@ func _on_collision_body_entered(_body):
 		death_particles.emitting = true
 		death_tween()
 
-
-#func _on_area_2d_hug_body_entered(body): # within reach of a huggable npc
-#	if body.is_in_group("Friend"):
-#		can_hug = true
-#		huggable_body = body # ref to CharacterBody2D that entered
-#		print('hi from player')
-#
-#func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
-#	if body.is_in_group("Friend"):
-#		can_hug = false
-#		huggable_body.hug_sprite.play("Default")
-#		player_sprite.play("Walk")
-#		print("bye from player")
-#		#huggable_body = null
-#
-
 func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc
 	if area.is_in_group("Friend"):
 		huggable_body = area.get_parent()

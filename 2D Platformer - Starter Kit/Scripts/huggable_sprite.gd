@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if hugged: # following player
+	if player and hugged: # following player once "hugged"
 		position.x = move_toward(position.x, player.position.x + 100, follow_speed * delta)
 		position.y = move_toward(position.y, player.position.y, follow_speed * delta)
 
@@ -19,7 +19,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		player = body
-		print(player)
+		#print(player)
 		
 func hug():
 	hugged = true
@@ -27,4 +27,4 @@ func hug():
 
 func let_go():
 	hugged = false
-	print("let go")
+	#print("let go")
