@@ -18,7 +18,7 @@ var jump_count : int = 1
 
 var is_grounded : bool = false
 var can_hug : bool = false
-var huggable_body
+var huggable_body: AnimatedSprite2D
 var is_hugging: bool = false
 
 var hug_count: int = 0
@@ -27,7 +27,9 @@ var hug_count: int = 0
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
-@onready var hug_particles = $Hug
+@onready var hug_particles = $HugParticles
+@onready var arrow_up: = $ArrowUp
+@onready var arrow_down: =  $ArrowDown
 
 #TRY ATTACHING THE HUGGABLE NPC TO THE PLAYER ???
 
@@ -40,31 +42,27 @@ func _process(_delta):
 	player_animations()
 	flip_player()
 	
-	
-	
 func _unhandled_input(event):
-	if Input.is_action_pressed("Interact") and can_hug:
+	if Input.is_action_just_pressed("Interact") and can_hug and not is_hugging:
 		hug()
-		
+	elif Input.is_action_just_pressed("Interact") and is_hugging:
+		let_go()
+
 # --------- CUSTOM FUNCTIONS ---------- #
 
 # <-- Player Movement Code -->
 func movement():
 	# Gravity
-	#if !is_on_floor():
-#	if(is_hugging == false):
-#		velocity.y += gravity
-#	else:
-#		velocity.y = 0
-	#elif is_on_floor():
-		#jump_count = max_jump_count
-	
 	velocity.y += gravity
+	
 	handle_jumping()
 	
 	# Move Player
 	var up_down_input = Input.get_axis("Down", "Up")
+	handle_arrow(up_down_input)
 	jump_direction = up_down_input
+
+		
 	var inputAxis = Input.get_axis("Left", "Right")
 	velocity = Vector2(inputAxis * move_speed, velocity.y)
 	move_and_slide()
@@ -82,29 +80,35 @@ func jump():
 		velocity.y = jump_force * jump_direction
 	else:
 		velocity.y = -jump_force
+func handle_arrow(up_down_input):
+	# Showing Up / Down Arrow
+	if up_down_input > 0:
+		arrow_up.visible = true
+		arrow_down.visible = false
+	else:
+		arrow_down.visible = true
+		arrow_up.visible = false
 	
 # Player "Hug" / Interact
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
-	if huggable_body.has_method("_set_hug"):
-			huggable_body._set_hug(jump_direction, velocity.y)
-			velocity.y = 0
 	GameManager.add_score()
+	huggable_body.hug()
 	#huggable_body.hug_sprite.play("Hugged")
+
+func let_go():
+	is_hugging = false
+	huggable_body.let_go()
 
 # Handle Player Animations
 func player_animations():
 	particle_trails.emitting = true
 	
-	if is_on_floor():
-		if abs(velocity.x) > 0 and not is_hugging:
-			particle_trails.emitting = true
-			player_sprite.play("Walk", 1.5)
-		elif not is_hugging:
-			player_sprite.play("Idle")
-	elif not is_hugging:
-		player_sprite.play("Jump")
+	if not is_hugging:
+		player_sprite.play('Walk')
+	else:
+		player_sprite.play("Hug")
 
 # Flip player sprite based on X velocity
 func flip_player():
@@ -141,28 +145,12 @@ func _on_collision_body_entered(_body):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
-	if _body.is_in_group("Friend"):
+
+func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc
+	if area.is_in_group("Friend"):
+		huggable_body = area.get_parent()
 		can_hug = true
-#		if _body.has_method("_set_hug"):
-#			_body._set_hug()
-		
 
-
-
-func _on_area_2d_hug_body_entered(body): # within reach of a huggable npc
-	if body.has_method("huggable"):
-		can_hug = true
-		huggable_body = body # ref to CharacterBody2D that entered
-
-func _on_area_2d_hug_body_exited(body): # not within reach of huggable npc
-	if body.has_method("huggable"):
+func _on_area_2d_hug_area_exited(area): # not within reach of huggable npc
+	if area.is_in_group("Friend"):
 		can_hug = false
-		is_hugging = false
-		huggable_body.hug_sprite.play("Default")
-		player_sprite.play("Walk")
-		#huggable_body = null
-		
-func player():
-	pass
-
-

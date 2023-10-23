@@ -6,15 +6,12 @@ var stop_speed = 0
 var current_movement_speed
 @export var movement_range = 100
 @export var direction = 1
+@export var follow_speed: = 1000
 
 var postive_range : float
 var negative_range : float
 
-var player
-var jump_velocity
-var jump_direction
-var jump_force : float = -350
-var initial_velocity = 0
+var player : CharacterBody2D
 
 #--------
 @onready var hug_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -22,6 +19,7 @@ var initial_velocity = 0
 var hugged : bool = false
 
 func _ready():
+	randomize()
 	postive_range = position.x + movement_range
 	negative_range = position.x - movement_range
 	max_movement_speed = randf_range(50, max_movement_speed)
@@ -32,33 +30,24 @@ func _ready():
 func _process(delta):
 	# Move the NPC back and forth
 	#var velocity = Vector2(movement_speed * direction, 0)
-	#move_and_slide()
 	if(canMove > 0):
 		var new_x = position.x + (current_movement_speed * direction * delta)
 		if new_x > (postive_range) or new_x < (negative_range):
 			direction *= -1
 		position.x = new_x
-	
-#	if(hugged == true && player != null):
-#		velocity.y = jump_force * jump_direction
-#		velocity = Vector2(0, velocity.y)
-#	else:
-#		velocity.y = initial_velocity
-#	move_and_slide()
 		
-#	if (hugged):  # NOT WORKING - npc following player as it floats
-#		position.y = player.position.y
-	
-		
+	if (hugged):  # npc following player as it floats
+		position.x = move_toward(position.x, player.position.x + 100, follow_speed * delta)
+		position.y = move_toward(position.y, player.position.y, follow_speed * delta)
+		print(global_position)
+	move_and_slide()
 
-
-func _set_hug(playerDirection, playerVelocity):
-	hugged = true	
+func _set_hug():
+	hugged = true
 	current_movement_speed = stop_speed
-	jump_velocity = playerVelocity
-	jump_direction = playerDirection
-	
 
+func let_go():
+	hugged = false
 
 #func _physics_process(delta):
 #
@@ -86,12 +75,11 @@ func huggable():
 #	#queue_free()
 
 func _on_hug_collision_body_entered(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		player = body
 
-func _on_hug_collision_body_exited(body):
-	current_movement_speed = max_movement_speed
-	player = null
+func _on_hug_collision_body_exited(_body):
+	#current_movement_speed = max_movement_speed
 	hugged = false
 
 

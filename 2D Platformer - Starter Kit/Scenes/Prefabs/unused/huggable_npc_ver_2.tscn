@@ -3,13 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/HuggableNPC.gd" id="1_q362j"]
 [ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="2_biik4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptmpi"]
-size = Vector2(149, 152)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u7vnl"]
-radius = 166.0
-height = 559.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpx3t"]
 atlas = ExtResource("2_biik4")
 region = Rect2(0, 0, 705, 725)
@@ -25,16 +18,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ejgg"]
+radius = 63.5059
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u7vnl"]
+radius = 83.0
+height = 559.0
+
 [node name="Huggable NPC ver 2" type="CharacterBody2D" groups=["Friend"]]
+motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_q362j")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.185, 0.185)
+sprite_frames = SubResource("SpriteFrames_n1oox")
+animation = &"Default"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -2)
-shape = SubResource("RectangleShape2D_ptmpi")
-debug_color = Color(0.12549, 0.231373, 0.482353, 0.419608)
+shape = SubResource("CircleShape2D_3ejgg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -47,11 +51,6 @@ position = Vector2(1.5, -2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HugCollision"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u7vnl")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.185, 0.185)
-sprite_frames = SubResource("SpriteFrames_n1oox")
-animation = &"Default"
 
 [connection signal="body_entered" from="HugCollision" to="." method="_on_hug_collision_body_entered"]
 [connection signal="body_exited" from="HugCollision" to="." method="_on_hug_collision_body_exited"]
