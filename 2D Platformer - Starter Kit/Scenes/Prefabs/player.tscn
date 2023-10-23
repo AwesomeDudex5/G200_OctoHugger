@@ -153,8 +153,9 @@ animations = [{
 radius = 27.0
 height = 66.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbjh"]
-size = Vector2(58, 69)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3kxq1"]
+radius = 30.81
+height = 100.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2mwhp"]
 radius = 58.5
@@ -194,7 +195,7 @@ shape = SubResource("CapsuleShape2D_n4sts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 position = Vector2(0, 14.5)
-shape = SubResource("RectangleShape2D_tvbjh")
+shape = SubResource("CapsuleShape2D_3kxq1")
 
 [node name="Area2DHug" type="Area2D" parent="."]
 position = Vector2(1, 14.5)
@@ -239,12 +240,11 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_knsc8")
 
 [node name="ArrowDown" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 101.445)
 rotation = 3.14159
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_knsc8")
 
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
-[connection signal="body_entered" from="Area2DHug" to="." method="_on_area_2d_hug_body_entered"]
-[connection signal="body_exited" from="Area2DHug" to="." method="_on_area_2d_hug_body_exited"]
+[connection signal="area_entered" from="Area2DHug" to="." method="_on_area_2d_hug_area_entered"]
+[connection signal="area_exited" from="Area2DHug" to="." method="_on_area_2d_hug_area_exited"]

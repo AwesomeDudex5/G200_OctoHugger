@@ -6,6 +6,7 @@ var stop_speed = 0
 var current_movement_speed
 @export var movement_range = 100
 @export var direction = 1
+@export var follow_speed: = 1000
 
 var postive_range : float
 var negative_range : float
@@ -29,7 +30,6 @@ func _ready():
 func _process(delta):
 	# Move the NPC back and forth
 	#var velocity = Vector2(movement_speed * direction, 0)
-	#move_and_slide()
 	if(canMove > 0):
 		var new_x = position.x + (current_movement_speed * direction * delta)
 		if new_x > (postive_range) or new_x < (negative_range):
@@ -37,19 +37,18 @@ func _process(delta):
 		position.x = new_x
 		
 	if (hugged):  # npc following player as it floats
-		#current_movement_speed = stop_speed
-		move_toward(player.position.x, player.position.y, delta)
-		#print (position.x, position.y)
-	
+		position.x = move_toward(position.x, player.position.x + 100, follow_speed * delta)
+		position.y = move_toward(position.y, player.position.y, follow_speed * delta)
+		print(global_position)
 	move_and_slide()
-
 
 func _set_hug():
 	hugged = true
-	#current_movement_speed = stop_speed
+	current_movement_speed = stop_speed
 
 func let_go():
 	hugged = false
+
 #func _physics_process(delta):
 #
 #	velocity.x += movement_speed
@@ -76,11 +75,11 @@ func huggable():
 #	#queue_free()
 
 func _on_hug_collision_body_entered(body):
-	if body.has_method("player"):
+	if body.is_in_group("Player"):
 		player = body
 
-func _on_hug_collision_body_exited(body):
-	current_movement_speed = max_movement_speed
+func _on_hug_collision_body_exited(_body):
+	#current_movement_speed = max_movement_speed
 	hugged = false
 
 

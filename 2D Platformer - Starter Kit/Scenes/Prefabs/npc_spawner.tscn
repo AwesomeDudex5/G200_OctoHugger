@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://wjx3ttvqyppb"]
+
+[ext_resource type="Script" path="res://Scripts/NPCspawner.gd" id="1_2duy3"]
+[ext_resource type="PackedScene" uid="uid://dimslee4b2y5h" path="res://Scenes/Prefabs/huggable_npc_ver_2.tscn" id="2_q5hlh"]
+
+[node name="NPC Spawner" type="Node2D"]
+visible = false
+position = Vector2(158, 170)
+script = ExtResource("1_2duy3")
+NPC_Prefab = ExtResource("2_q5hlh")

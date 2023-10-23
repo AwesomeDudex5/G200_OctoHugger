@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cotegi663w7r7"]
+
+[ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="1_xav2a"]
+[ext_resource type="Script" path="res://Scripts/huggable_sprite.gd" id="2_kpt7k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yacm2"]
+atlas = ExtResource("1_xav2a")
+region = Rect2(0, 0, 705, 725)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1l1xt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yacm2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cops2"]
+radius = 405.405
+height = 2518.92
+
+[node name="huggable_sprite" type="AnimatedSprite2D" groups=["Friend"]]
+scale = Vector2(0.185, 0.185)
+sprite_frames = SubResource("SpriteFrames_1l1xt")
+script = ExtResource("2_kpt7k")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Friend"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cops2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
