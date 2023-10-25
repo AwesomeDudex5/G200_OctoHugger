@@ -68,4 +68,9 @@ script = ExtResource("2_kpt7k")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cops2")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

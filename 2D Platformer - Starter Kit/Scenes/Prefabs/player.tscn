@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=31 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
-[ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="3_ffufh"]
+[ext_resource type="Texture2D" uid="uid://cbh7dqh1wfqah" path="res://Assets/Spritesheet/octohug.png" id="3_r0pak"]
 [ext_resource type="Texture2D" uid="uid://bqkwy25o6m4c6" path="res://Assets/Spritesheet/octo_and_bubbles.png" id="4_v11cj"]
 [ext_resource type="Texture2D" uid="uid://ds1v7mlqvy1e7" path="res://Assets/Spritesheet/Arrow_TMP.png" id="5_knsc8"]
 
@@ -14,9 +14,21 @@ point_count = 3
 offsets = PackedFloat32Array(0.25, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgkba"]
-atlas = ExtResource("3_ffufh")
-region = Rect2(0, 0, 705, 725)
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8tdh"]
+atlas = ExtResource("3_r0pak")
+region = Rect2(0, 0, 2048, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22f0s"]
+atlas = ExtResource("3_r0pak")
+region = Rect2(2048, 0, 2048, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x7dn"]
+atlas = ExtResource("3_r0pak")
+region = Rect2(0, 1024, 2048, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh7j5"]
+atlas = ExtResource("3_r0pak")
+region = Rect2(2048, 1024, 2048, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlu8e"]
 atlas = ExtResource("4_v11cj")
@@ -82,7 +94,16 @@ region = Rect2(1024, 1024, 1024, 1024)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cgkba")
+"texture": SubResource("AtlasTexture_w8tdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22f0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x7dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh7j5")
 }],
 "loop": true,
 "name": &"Hug",
@@ -185,7 +206,7 @@ color_ramp = SubResource("Gradient_3gc37")
 position = Vector2(0, 12.755)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_k5kyp")
-animation = &"Walk"
+animation = &"Hug"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)

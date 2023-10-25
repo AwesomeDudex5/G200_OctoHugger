@@ -46,7 +46,10 @@ func _process(delta):
 			position.x = move_toward(position.x, player.position.x + 100, follow_speed * delta)
 			position.y = move_toward(position.y, player.position.y, follow_speed * delta)
 	else:
+		let_go()
 		position.y -= gravity
+		$Area2D.visible = false
+		$Timer.start()
 
 
 func _on_area_2d_body_entered(body):
@@ -57,9 +60,11 @@ func _on_area_2d_body_entered(body):
 func hug():
 	hugged = true
 	canMove = 0
+	visible = false
 	#print("hugged")
 
 func let_go():
+	visible = true
 	hugged = false
 	canMove = 1
 	#update new ranges
@@ -72,3 +77,7 @@ func set_ascending():
 	reachedAscendZone = true
 	canMove = 0
 
+
+
+func _on_timer_timeout():
+	queue_free()
