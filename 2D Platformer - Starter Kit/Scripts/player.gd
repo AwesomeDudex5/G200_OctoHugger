@@ -145,6 +145,12 @@ func _on_collision_body_entered(_body):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
+		
+func _on_collision_area_entered(area): # for the hooks / sea urchins / other hazards
+	if area.is_in_group("Traps"):
+		AudioManager.death_sfx.play()
+		death_particles.emitting = true
+		death_tween()
 
 func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc
 	if area.is_in_group("Friend"):
@@ -154,3 +160,6 @@ func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc
 func _on_area_2d_hug_area_exited(area): # not within reach of huggable npc
 	if area.is_in_group("Friend"):
 		can_hug = false
+
+
+

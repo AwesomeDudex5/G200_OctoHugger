@@ -27,6 +27,7 @@ func _ready():
 	max_movement_speed = randf_range(50, max_movement_speed)
 	current_movement_speed = max_movement_speed
 	canMove = (randi() % 2)
+	play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

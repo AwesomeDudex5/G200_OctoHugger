@@ -1,12 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=27 format=3 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
 [ext_resource type="Script" path="res://Scripts/AscendZone.gd" id="5_5o43u"]
+[ext_resource type="Texture2D" uid="uid://cam4o2pf6h0ht" path="res://Assets/Spritesheet/ENV_Tiles-01.png" id="5_6wk0m"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_wqbaa"]
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_66mfc"]
+[ext_resource type="PackedScene" uid="uid://ckufvpwn1oko2" path="res://Scenes/Prefabs/Sea_Urchin.tscn" id="6_qfjix"]
+[ext_resource type="PackedScene" uid="uid://clfi3onegcb4m" path="res://Scenes/Prefabs/Hooks.tscn" id="6_tfmln"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
 [ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
@@ -107,6 +110,19 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ohbe"]
+texture = ExtResource("5_6wk0m")
+texture_region_size = Vector2i(64, 64)
+3:0/0 = 0
+2:0/0 = 0
+1:0/0 = 0
+0:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kjb3j"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_5ohbe")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
 size = Vector2(106.903, 265.158)
 
@@ -165,6 +181,18 @@ layer_0/tile_data = PackedInt32Array(458752, 131072, 1, 458753, 131072, 1, 45875
 tile_set = SubResource("TileSet_2fcbi")
 format = 2
 layer_0/tile_data = PackedInt32Array(589836, 0, 5, 589835, 0, 5, 589834, 0, 5, 589833, 0, 5, 589832, 0, 5, 589831, 0, 5, 589830, 0, 5, 589829, 0, 5)
+
+[node name="Environment" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_kjb3j")
+cell_quadrant_size = 128
+format = 2
+layer_0/tile_data = PackedInt32Array(393229, 1, 0, 131090, 65537, 0, 131093, 196609, 0)
+
+[node name="SeaUrchin" parent="Level" instance=ExtResource("6_qfjix")]
+position = Vector2(976, 341)
+
+[node name="Hook" parent="Level" instance=ExtResource("6_tfmln")]
+position = Vector2(800, -153)
 
 [node name="SpawnPoint" type="Marker2D" parent="Level"]
 unique_name_in_owner = true

@@ -16,3 +16,4 @@ func _on_area_entered(area): #check if body is Friend, set friend to ascend
 		if area.get_parent().has_method("set_ascending"): 
 			area.get_parent().set_ascending() # calling huggable_sprite's set_ascending()
 			print("ascending friend")
+			GameManager.add_score()

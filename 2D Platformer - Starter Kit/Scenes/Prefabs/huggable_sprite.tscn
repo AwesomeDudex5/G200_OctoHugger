@@ -1,17 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://cotegi663w7r7"]
+[gd_scene load_steps=11 format=3 uid="uid://cotegi663w7r7"]
 
-[ext_resource type="Texture2D" uid="uid://dgduegwd8j5u3" path="res://Assets/Spritesheet/Generic_Circle.png" id="1_xav2a"]
+[ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_pcs2j"]
 [ext_resource type="Script" path="res://Scripts/huggable_sprite.gd" id="2_kpt7k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yacm2"]
-atlas = ExtResource("1_xav2a")
-region = Rect2(0, 0, 705, 725)
+[sub_resource type="AtlasTexture" id="AtlasTexture_on70m"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_floh7"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj3gm"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_valcv"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y6fd"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jeil"]
+atlas = ExtResource("1_pcs2j")
+region = Rect2(2048, 1024, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1l1xt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yacm2")
+"texture": SubResource("AtlasTexture_on70m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_floh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj3gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_valcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y6fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jeil")
 }],
 "loop": true,
 "name": &"default",
@@ -23,7 +58,7 @@ radius = 405.405
 height = 2518.92
 
 [node name="huggable_sprite" type="AnimatedSprite2D" groups=["Friend"]]
-scale = Vector2(0.185, 0.185)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_1l1xt")
 script = ExtResource("2_kpt7k")
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckufvpwn1oko2"]
+
+[ext_resource type="Texture2D" uid="uid://b6a3i2n5hhwu1" path="res://Assets/Spritesheet/Trap_sea-urchin-01.png" id="1_reh7j"]
+[ext_resource type="Texture2D" uid="uid://b3bupn0ma7thn" path="res://Assets/Spritesheet/Trap_sea-urchin-02.png" id="2_i5jvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6xjh"]
+radius = 55.7315
+
+[node name="SeaUrchin" type="Area2D" groups=["Traps"]]
+
+[node name="SeaUrchin1" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_reh7j")
+
+[node name="SeaUrchin2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_i5jvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p6xjh")
