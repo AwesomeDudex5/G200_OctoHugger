@@ -54,7 +54,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cops2"]
-radius = 405.405
+radius = 490.0
 height = 2518.92
 
 [node name="huggable_sprite" type="AnimatedSprite2D" groups=["Friend"]]
