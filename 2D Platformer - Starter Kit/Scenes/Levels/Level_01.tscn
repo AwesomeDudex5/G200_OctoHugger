@@ -181,7 +181,6 @@ texture = ExtResource("13_680v1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ascend Zone"]
 position = Vector2(-0.18623, 4.57178)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y38ca")
 
 [node name="TutorialText" type="Node2D" parent="."]
@@ -289,3 +288,5 @@ root_node = NodePath("../Gate Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_3o44y")
 }
+
+[connection signal="area_entered" from="Level/Ascend Zone" to="Level/Ascend Zone" method="_on_area_entered"]

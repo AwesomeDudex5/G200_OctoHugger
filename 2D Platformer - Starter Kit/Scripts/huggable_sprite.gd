@@ -45,7 +45,7 @@ func _process(delta):
 			position.x = move_toward(position.x, player.position.x + 100, follow_speed * delta)
 			position.y = move_toward(position.y, player.position.y, follow_speed * delta)
 	else:
-		position.y += gravity
+		position.y -= gravity
 
 
 func _on_area_2d_body_entered(body):
@@ -69,5 +69,5 @@ func let_go():
 
 func set_ascending():
 	reachedAscendZone = true
-	canMove =false
+	canMove = 0
 
