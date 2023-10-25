@@ -2,12 +2,24 @@
 
 extends Node2D
 
+signal savedFriend
+
 var score : int = 0
-var friendsHugged = 0
+var friendSaved = 0
 
 # Adds 1 to score variable
 func add_score():
 	score += 1
+	
+func addToGate():
+	friendSaved += 1
+
+func checkGate(numToUnlock):
+	if(friendSaved >= numToUnlock):
+		return true
+	else:
+		return false
+
 
 # Loads next level
 func load_next_level(next_scene : PackedScene):

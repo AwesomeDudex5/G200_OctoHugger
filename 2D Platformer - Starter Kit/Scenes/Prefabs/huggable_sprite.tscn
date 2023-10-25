@@ -29,7 +29,7 @@ script = ExtResource("2_kpt7k")
 
 [node name="Area2D" type="Area2D" parent="." groups=["Friend"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Friend"]]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cops2")
 

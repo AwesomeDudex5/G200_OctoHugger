@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=22 format=3 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
+[ext_resource type="Script" path="res://Scripts/AscendZone.gd" id="5_5o43u"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_wqbaa"]
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_66mfc"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
+[ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
 [ext_resource type="PackedScene" uid="uid://cwybijrtyxaja" path="res://Scenes/Prefabs/bubble_particles.tscn" id="13_hw8ol"]
 [ext_resource type="Texture2D" uid="uid://0ajkdfycyrui" path="res://Assets/Spritesheet/bubble_01.png" id="14_du53r"]
 [ext_resource type="Texture2D" uid="uid://bkvd1kbrhk45o" path="res://Assets/Spritesheet/bubble_03.png" id="15_62d5k"]
@@ -105,6 +107,29 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
+size = Vector2(106.903, 265.158)
+
+[sub_resource type="Animation" id="Animation_8811t"]
+resource_name = "Unlock_Animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 262)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3o44y"]
+_data = {
+"Unlock_Animation": SubResource("Animation_8811t")
+}
+
 [node name="Level_01" type="Node2D"]
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
@@ -144,6 +169,20 @@ layer_0/tile_data = PackedInt32Array(589836, 0, 5, 589835, 0, 5, 589834, 0, 5, 5
 [node name="SpawnPoint" type="Marker2D" parent="Level"]
 unique_name_in_owner = true
 position = Vector2(174, 383)
+
+[node name="Ascend Zone" type="Area2D" parent="Level"]
+position = Vector2(999, -307)
+scale = Vector2(21.4775, 0.109369)
+monitorable = false
+script = ExtResource("5_5o43u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Ascend Zone"]
+texture = ExtResource("13_680v1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ascend Zone"]
+position = Vector2(-0.18623, 4.57178)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_y38ca")
 
 [node name="TutorialText" type="Node2D" parent="."]
 
@@ -238,3 +277,15 @@ scale_amount_max = 0.1
 
 [node name="huggable_sprite" parent="." instance=ExtResource("15_dlo3l")]
 position = Vector2(313, 135)
+
+[node name="Gate" type="Node2D" parent="."]
+position = Vector2(1270, 57)
+
+[node name="Gate Sprite" type="Sprite2D" parent="Gate"]
+texture = ExtResource("13_680v1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gate"]
+root_node = NodePath("../Gate Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_3o44y")
+}

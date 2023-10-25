@@ -93,7 +93,7 @@ func handle_arrow(up_down_input):
 func hug():
 	is_hugging = true
 	player_sprite.play("Hug")
-	GameManager.add_score()
+	#GameManager.add_score()
 	huggable_body.hug()
 	#huggable_body.hug_sprite.play("Hugged")
 
