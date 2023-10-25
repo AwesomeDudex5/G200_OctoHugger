@@ -2,5 +2,5 @@
 
 [node name="BubbleParticles" type="CPUParticles2D"]
 emission_shape = 3
-emission_rect_extents = Vector2(1280, 1)
+emission_rect_extents = Vector2(2048, 1)
 gravity = Vector2(0, -90)

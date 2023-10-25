@@ -15,7 +15,7 @@ var reachedAscendZone : bool
 var postive_range : float
 var negative_range : float
 
-var hugged : bool  = false
+var hugged : bool = false
 var player : CharacterBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
