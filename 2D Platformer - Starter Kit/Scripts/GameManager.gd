@@ -14,7 +14,6 @@ func add_score():
 func addToGate():
 	print("Adding to Gate")
 	friendSaved += 1
-	score += 1
 	emit_signal("savedFriend", friendSaved)
 
 func checkGate(numToUnlock):
