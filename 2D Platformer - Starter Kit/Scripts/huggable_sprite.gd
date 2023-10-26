@@ -78,6 +78,5 @@ func set_ascending():
 	canMove = 0
 
 
-
-func _on_timer_timeout():
+func _on_timer_timeout(): # release it from memory after 5 sec
 	queue_free()

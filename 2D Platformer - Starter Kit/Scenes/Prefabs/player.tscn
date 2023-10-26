@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=35 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
 [ext_resource type="Texture2D" uid="uid://cbh7dqh1wfqah" path="res://Assets/Spritesheet/octohug.png" id="3_r0pak"]
 [ext_resource type="Texture2D" uid="uid://bqkwy25o6m4c6" path="res://Assets/Spritesheet/octo_and_bubbles.png" id="4_v11cj"]
 [ext_resource type="Texture2D" uid="uid://ds1v7mlqvy1e7" path="res://Assets/Spritesheet/Arrow_TMP.png" id="5_knsc8"]
+[ext_resource type="Texture2D" uid="uid://i634yqnivwg" path="res://Assets/Spritesheet/hug-promps-tiles.png" id="6_sxmqg"]
 
 [sub_resource type="Curve" id="Curve_m2jh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -182,6 +183,28 @@ height = 100.2
 radius = 58.5
 height = 270.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddxyv"]
+atlas = ExtResource("6_sxmqg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qsem"]
+atlas = ExtResource("6_sxmqg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ir11s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddxyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qsem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_qt7d6")
 
@@ -206,7 +229,7 @@ color_ramp = SubResource("Gradient_3gc37")
 position = Vector2(0, 12.755)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_k5kyp")
-animation = &"Hug"
+animation = &"Jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
@@ -265,6 +288,13 @@ position = Vector2(0, 101.445)
 rotation = 3.14159
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_knsc8")
+
+[node name="HugPrompt" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(96, -25)
+scale = Vector2(3.21875, 3.21875)
+sprite_frames = SubResource("SpriteFrames_ir11s")
 
 [connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
