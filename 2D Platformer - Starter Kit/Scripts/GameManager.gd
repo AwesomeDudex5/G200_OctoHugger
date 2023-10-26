@@ -2,7 +2,7 @@
 
 extends Node2D
 
-signal savedFriend
+signal savedFriend(totalSaved : float)
 
 var score : int = 0
 var friendSaved = 0
@@ -12,7 +12,9 @@ func add_score():
 	score += 1
 	
 func addToGate():
+	print("Adding to Gate")
 	friendSaved += 1
+	emit_signal("savedFriend", friendSaved)
 
 func checkGate(numToUnlock):
 	if(friendSaved >= numToUnlock):
