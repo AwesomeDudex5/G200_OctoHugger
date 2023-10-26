@@ -361,6 +361,7 @@ mass = 0.01
 shape = SubResource("RectangleShape2D_usdkh")
 
 [node name="Moray Eel" parent="." instance=ExtResource("19_lg60a")]
+position = Vector2(-482, -143)
 
 [connection signal="area_entered" from="Level/Ascend Zone" to="Level/Ascend Zone" method="_on_area_entered"]
 [connection signal="savedFriend" from="GameManager" to="Gate" method="_on_game_manager_saved_friend"]

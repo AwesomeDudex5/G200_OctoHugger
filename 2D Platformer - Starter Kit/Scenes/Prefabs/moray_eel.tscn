@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://df2uo5ypl2jac"]
+[gd_scene load_steps=7 format=3 uid="uid://df2uo5ypl2jac"]
 
 [ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_2el6u"]
+[ext_resource type="Script" path="res://Scenes/Prefabs/moray_eel.gd" id="1_6vcq4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7mh1"]
+radius = 968.994
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f0bn"]
+size = Vector2(2649.99, 1100)
 
 [sub_resource type="Animation" id="Animation_tj5oo"]
 resource_name = "default"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,8 +31,21 @@ _data = {
 "default": SubResource("Animation_tj5oo")
 }
 
-[node name="Moray Eel" type="Node2D"]
+[node name="Moray Eel" type="Node2D" groups=["Traps"]]
 scale = Vector2(0.320001, 0.320001)
+script = ExtResource("1_6vcq4")
+
+[node name="Detection Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area"]
+position = Vector2(446.874, -87.4997)
+shape = SubResource("CircleShape2D_q7mh1")
+
+[node name="Hurt Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt Area"]
+position = Vector2(-784.373, -3.125)
+shape = SubResource("RectangleShape2D_5f0bn")
 
 [node name="Head" type="Sprite2D" parent="."]
 texture = ExtResource("1_2el6u")
