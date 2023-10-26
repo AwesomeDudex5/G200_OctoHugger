@@ -43,7 +43,28 @@ func _on_kill_area_exited(body):
 		# The player has exited the kill area
 		# Handle player exit logic here
 		
-
 func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		print("Deteced Player")
+
+# it's Kai I added these: --------------------------------------------------------------------
+func _on_detection_area_body_entered(body): # i think this could work, this is the "Detection Area"
+	if body.is_in_group("Player"):
+		print("Detected Player")
+		
+func _on_detection_area_body_exited(body):
+	if body.is_in_group("Player"):
+		print("Player left detection area")
+
+
+func _on_hurt_area_body_entered(body): # Hurt area 
+	if body.is_in_group("Player"):
+		print ("Player entered hurt area")
+
+
+func _on_hurt_area_body_exited(body):
+	if body.is_in_group("Player"):
+		print ("Player left hurt area")
+
+
+

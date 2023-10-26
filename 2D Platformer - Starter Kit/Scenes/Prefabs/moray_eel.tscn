@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://df2uo5ypl2jac"]
+[gd_scene load_steps=7 format=3 uid="uid://bjtc17yg4axpe"]
 
 [ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_2el6u"]
 [ext_resource type="Script" path="res://Scenes/Prefabs/moray_eel.gd" id="1_6vcq4"]
@@ -71,3 +71,8 @@ frame = 8
 libraries = {
 "": SubResource("AnimationLibrary_i1mfb")
 }
+
+[connection signal="body_entered" from="Detection Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection Area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Hurt Area" to="." method="_on_hurt_area_body_entered"]
+[connection signal="body_exited" from="Hurt Area" to="." method="_on_hurt_area_body_exited"]
