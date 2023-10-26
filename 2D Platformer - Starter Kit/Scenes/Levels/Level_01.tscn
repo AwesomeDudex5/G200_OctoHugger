@@ -10,10 +10,10 @@
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_66mfc"]
 [ext_resource type="PackedScene" uid="uid://ckufvpwn1oko2" path="res://Scenes/Prefabs/Sea_Urchin.tscn" id="6_qfjix"]
 [ext_resource type="PackedScene" uid="uid://clfi3onegcb4m" path="res://Scenes/Prefabs/Hooks.tscn" id="6_tfmln"]
-[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
 [ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
 [ext_resource type="PackedScene" uid="uid://cwybijrtyxaja" path="res://Scenes/Prefabs/bubble_particles.tscn" id="13_hw8ol"]
+[ext_resource type="Texture2D" uid="uid://c8e6po83qg1re" path="res://Assets/Spritesheet/Ghost_Friend_Single.png" id="13_u7a0b"]
 [ext_resource type="Texture2D" uid="uid://0ajkdfycyrui" path="res://Assets/Spritesheet/bubble_01.png" id="14_du53r"]
 [ext_resource type="Texture2D" uid="uid://bkvd1kbrhk45o" path="res://Assets/Spritesheet/bubble_03.png" id="15_62d5k"]
 [ext_resource type="PackedScene" uid="uid://cotegi663w7r7" path="res://Scenes/Prefabs/huggable_sprite.tscn" id="15_dlo3l"]
@@ -228,7 +228,8 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_gwcy2")
 theme_override_font_sizes/font_size = 32
 text = "A & D To Move
-Spacebar To Jump"
+W & S To Set Direction
+Spacebar To Thrust"
 
 [node name="SetNextScene" type="Label" parent="TutorialText"]
 visible = false
@@ -271,10 +272,10 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 116.0
-offset_bottom = 116.0
-texture = ExtResource("7_j7jun")
-stretch_mode = 4
+offset_right = 1049.0
+offset_bottom = 1054.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("13_u7a0b")
 
 [node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
@@ -321,6 +322,9 @@ root_node = NodePath("../Gate Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_3o44y")
 }
+
+[node name="NextSpawnPoint" type="Marker2D" parent="Gate"]
+position = Vector2(121, 7)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Gate"]
 mass = 0.01

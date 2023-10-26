@@ -19,4 +19,6 @@ func updateGateCount(friendSaved):
 	numberOfFriendSaved = friendSaved
 	if(numberToUnlock <= numberOfFriendSaved):
 		animationPlayer.play("Unlock_Animation")
+	$RigidBody2D/CollisionShape2D.disabled = false
+	print("Collison", $RigidBody2D/CollisionShape2D.disabled)
 
