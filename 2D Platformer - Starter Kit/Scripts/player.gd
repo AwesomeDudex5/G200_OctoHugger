@@ -24,7 +24,7 @@ var is_hugging: bool = false
 var hug_count: int = 0
 
 @onready var player_sprite = $AnimatedSprite2D
-@onready var spawn_point = %SpawnPoint
+@onready var spawn_point : Marker2D = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
 @onready var hug_particles = $HugParticles
@@ -41,6 +41,7 @@ func _process(_delta):
 	movement()
 	player_animations()
 	flip_player()
+	#set the first spawn point to the one in the beginning
 	
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("Interact") and can_hug and not is_hugging:
@@ -99,7 +100,8 @@ func hug():
 
 func let_go():
 	is_hugging = false
-	huggable_body.let_go()
+	if(huggable_body != null):
+		huggable_body.let_go()
 
 # Handle Player Animations
 func player_animations():
@@ -152,7 +154,8 @@ func _on_collision_area_entered(area): # for the hooks / sea urchins / other haz
 	if area.is_in_group("Traps"):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
-		let_go()
+		if(huggable_body != null):
+			let_go()
 		death_tween()
 
 func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc

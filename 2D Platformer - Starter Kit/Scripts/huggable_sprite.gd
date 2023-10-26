@@ -76,7 +76,6 @@ func let_go():
 func set_ascending():
 	reachedAscendZone = true
 	canMove = 0
-	GameManager.addToGate()
 
 
 

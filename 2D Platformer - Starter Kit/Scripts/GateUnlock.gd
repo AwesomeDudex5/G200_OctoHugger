@@ -19,13 +19,8 @@ func updateGateCount(friendSaved):
 	numberOfFriendSaved = friendSaved
 	if(numberToUnlock <= numberOfFriendSaved):
 		animationPlayer.play("Unlock_Animation")
-		$RigidBody2D/CollisionShape2D.visible = false
-		
+	$RigidBody2D/CollisionShape2D.disabled = true
+	$RigidBody2D/CollisionShape2D.set_deferred("disabled", true)
+	$RigidBody2D/CollisionShape2D.visible = false
+	print("Collison ", $RigidBody2D/CollisionShape2D.disabled)
 
-
-
-func _on_game_manager_saved_friend(totalSaved):
-	numberOfFriendSaved = totalSaved
-	if(numberToUnlock <= numberOfFriendSaved):
-		animationPlayer.play("Unlock_Animation")
-		$RigidBody2D/CollisionShape2D.visible = false

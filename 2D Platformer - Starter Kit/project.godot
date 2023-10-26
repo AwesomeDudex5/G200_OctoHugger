@@ -81,4 +81,4 @@ Down={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.94902, 0.827451, 0.670588, 1)
+environment/defaults/default_clear_color=Color(0.458824, 0.835294, 0.894118, 1)

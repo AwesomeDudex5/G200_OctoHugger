@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://df2uo5ypl2jac"]
+
+[ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_2el6u"]
+
+[sub_resource type="Animation" id="Animation_tj5oo"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1mfb"]
+_data = {
+"default": SubResource("Animation_tj5oo")
+}
+
+[node name="Moray Eel" type="Node2D"]
+scale = Vector2(0.320001, 0.320001)
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("1_2el6u")
+hframes = 5
+vframes = 6
+frame = 3
+
+[node name="Body" type="Sprite2D" parent="Head"]
+position = Vector2(-1017, 0)
+texture = ExtResource("1_2el6u")
+hframes = 5
+vframes = 6
+frame = 8
+
+[node name="Body2" type="Sprite2D" parent="Head"]
+position = Vector2(-2034, 0)
+texture = ExtResource("1_2el6u")
+hframes = 5
+vframes = 6
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i1mfb")
+}
