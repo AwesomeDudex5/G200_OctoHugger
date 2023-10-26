@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=38 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://djtbyhghowwxs" path="res://Assets/Spritesheet/BG_sea_tiles.png" id="6_vvjdl"]
 [ext_resource type="Texture2D" uid="uid://kp12akkak67x" path="res://Assets/Spritesheet/BG_sky_tiles.png" id="7_nvof1"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
+[ext_resource type="PackedScene" uid="uid://bts5y15qgj75i" path="res://Scenes/Prefabs/AscendZoneParticles.tscn" id="12_82myr"]
+[ext_resource type="PackedScene" uid="uid://b8fx2vhne5na6" path="res://Scenes/Prefabs/sky_area.tscn" id="12_nhrkc"]
 [ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
 [ext_resource type="PackedScene" uid="uid://cwybijrtyxaja" path="res://Scenes/Prefabs/bubble_particles.tscn" id="13_hw8ol"]
 [ext_resource type="Texture2D" uid="uid://bmkpdmdhhgepa" path="res://Assets/Spritesheet/octoGhost_UI.png" id="13_qnis4"]
@@ -20,6 +22,40 @@
 [ext_resource type="Texture2D" uid="uid://bkvd1kbrhk45o" path="res://Assets/Spritesheet/bubble_03.png" id="15_62d5k"]
 [ext_resource type="PackedScene" uid="uid://cotegi663w7r7" path="res://Scenes/Prefabs/huggable_sprite.tscn" id="15_dlo3l"]
 [ext_resource type="Script" path="res://Scripts/GateUnlock.gd" id="18_eowax"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ktpb"]
+texture = ExtResource("6_vvjdl")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7em8i"]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_6ktpb")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ntns"]
+texture = ExtResource("7_nvof1")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_q7vy8"]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_4ntns")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("5_wqbaa")
@@ -126,42 +162,8 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_5ohbe")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ktpb"]
-texture = ExtResource("6_vvjdl")
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_7em8i"]
-tile_size = Vector2i(256, 256)
-sources/0 = SubResource("TileSetAtlasSource_6ktpb")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ntns"]
-texture = ExtResource("7_nvof1")
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_q7vy8"]
-tile_size = Vector2i(256, 256)
-sources/0 = SubResource("TileSetAtlasSource_4ntns")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
-size = Vector2(106.903, 265.158)
+size = Vector2(254.266, 1097.2)
 
 [sub_resource type="Animation" id="Animation_pf05f"]
 length = 0.001
@@ -264,6 +266,17 @@ editor_draw_drag_margin = true
 
 [node name="Level" type="Node2D" parent="."]
 
+[node name="Underwater" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_7em8i")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65536, 0, 1, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 131072, 0, 2, 131073, 0, 2, 131074, 0, 2, 131075, 0, 2, 131076, 0, 2, 131077, 0, 2, 131078, 0, 2)
+
+[node name="Sky_Surface" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_q7vy8")
+cell_quadrant_size = 128
+format = 2
+layer_0/tile_data = PackedInt32Array(-131072, 196608, 1, -131071, 196608, 1, -131070, 196608, 1, -131069, 196608, 1, -131068, 196608, 1, -131067, 196608, 1, -131066, 196608, 1, -196608, 196608, 0, -196607, 196608, 0, -196606, 196608, 0, -196605, 196608, 0, -196604, 196608, 0, -196603, 196608, 0, -196602, 196608, 0)
+
 [node name="Ground" type="TileMap" parent="Level" groups=["Ground"]]
 tile_set = SubResource("TileSet_ywwrl")
 format = 2
@@ -280,15 +293,6 @@ cell_quadrant_size = 128
 format = 2
 layer_0/tile_data = PackedInt32Array(393229, 1, 0, 131090, 65537, 0, 131093, 196609, 0)
 
-[node name="Underwater" type="TileMap" parent="Level"]
-tile_set = SubResource("TileSet_7em8i")
-format = 2
-
-[node name="Sky_Surface" type="TileMap" parent="Level"]
-tile_set = SubResource("TileSet_q7vy8")
-cell_quadrant_size = 128
-format = 2
-
 [node name="SeaUrchin" parent="Level" instance=ExtResource("6_qfjix")]
 position = Vector2(976, 341)
 
@@ -300,17 +304,26 @@ unique_name_in_owner = true
 position = Vector2(174, 383)
 
 [node name="Ascend Zone" type="Area2D" parent="Level"]
-position = Vector2(999, -307)
+position = Vector2(999, -350.3)
 scale = Vector2(21.4775, 0.109369)
 monitorable = false
 script = ExtResource("5_5o43u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Ascend Zone"]
+visible = false
+position = Vector2(0, 102.202)
+scale = Vector2(1, 1.80158)
 texture = ExtResource("13_680v1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ascend Zone"]
-position = Vector2(-0.18623, 4.57178)
+position = Vector2(54.4989, -216.697)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y38ca")
+
+[node name="AscendZoneParticles" parent="Level/Ascend Zone/CollisionShape2D" instance=ExtResource("12_82myr")]
+
+[node name="SkyArea" parent="Level" instance=ExtResource("12_nhrkc")]
+position = Vector2(-384, -378)
 
 [node name="TutorialText" type="Node2D" parent="."]
 
