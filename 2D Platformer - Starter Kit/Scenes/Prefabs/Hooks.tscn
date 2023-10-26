@@ -10,7 +10,8 @@ radius = 579.014
 scale = Vector2(0.1, 0.1)
 
 [node name="String" type="Sprite2D" parent="."]
-position = Vector2(416, -1022)
+position = Vector2(416, -2340)
+scale = Vector2(1, 3.57422)
 texture = ExtResource("1_wmf37")
 
 [node name="Hook" type="Sprite2D" parent="."]

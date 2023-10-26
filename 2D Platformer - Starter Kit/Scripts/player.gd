@@ -126,6 +126,7 @@ func death_tween():
 	await get_tree().create_timer(0.3).timeout
 	AudioManager.respawn_sfx.play()
 	respawn_tween()
+	velocity.y = 0 # reset velocity so the player doesn't keep accelerating up like crazy on respawn
 
 func respawn_tween():
 	var tween = create_tween()
