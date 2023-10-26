@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=36 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/GameUI.gd" id="6_66mfc"]
 [ext_resource type="PackedScene" uid="uid://ckufvpwn1oko2" path="res://Scenes/Prefabs/Sea_Urchin.tscn" id="6_qfjix"]
 [ext_resource type="PackedScene" uid="uid://clfi3onegcb4m" path="res://Scenes/Prefabs/Hooks.tscn" id="6_tfmln"]
+[ext_resource type="Texture2D" uid="uid://djtbyhghowwxs" path="res://Assets/Spritesheet/BG_sea_tiles.png" id="6_vvjdl"]
+[ext_resource type="Texture2D" uid="uid://kp12akkak67x" path="res://Assets/Spritesheet/BG_sky_tiles.png" id="7_nvof1"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
 [ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
 [ext_resource type="PackedScene" uid="uid://cwybijrtyxaja" path="res://Scenes/Prefabs/bubble_particles.tscn" id="13_hw8ol"]
@@ -124,8 +126,69 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_5ohbe")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ktpb"]
+texture = ExtResource("6_vvjdl")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7em8i"]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_6ktpb")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ntns"]
+texture = ExtResource("7_nvof1")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_q7vy8"]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_4ntns")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
 size = Vector2(106.903, 265.158)
+
+[sub_resource type="Animation" id="Animation_pf05f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../RigidBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RigidBody2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_8811t"]
 resource_name = "Unlock_Animation"
@@ -153,20 +216,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_pf05f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../RigidBody2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RigidBody2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3o44y"]
@@ -219,6 +279,15 @@ tile_set = SubResource("TileSet_kjb3j")
 cell_quadrant_size = 128
 format = 2
 layer_0/tile_data = PackedInt32Array(393229, 1, 0, 131090, 65537, 0, 131093, 196609, 0)
+
+[node name="Underwater" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_7em8i")
+format = 2
+
+[node name="Sky_Surface" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_q7vy8")
+cell_quadrant_size = 128
+format = 2
 
 [node name="SeaUrchin" parent="Level" instance=ExtResource("6_qfjix")]
 position = Vector2(976, 341)
@@ -342,6 +411,7 @@ position = Vector2(1270, 57)
 script = ExtResource("18_eowax")
 
 [node name="Gate Sprite" type="Sprite2D" parent="Gate"]
+position = Vector2(0, 262)
 texture = ExtResource("13_680v1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gate"]
