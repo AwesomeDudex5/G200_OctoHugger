@@ -320,6 +320,8 @@ position = Vector2(54.4989, -216.697)
 shape = SubResource("RectangleShape2D_y38ca")
 
 [node name="AscendZoneParticles" parent="Level/Ascend Zone/CollisionShape2D" instance=ExtResource("12_82myr")]
+amount = 500
+lifetime = 4.0
 
 [node name="SkyArea" parent="Level" instance=ExtResource("12_nhrkc")]
 position = Vector2(-384, -378)
