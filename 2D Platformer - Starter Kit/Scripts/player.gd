@@ -35,6 +35,8 @@ var hug_count: int = 0
 
 
 # --------- BUILT-IN FUNCTIONS ---------- #
+func _ready():
+	$HugPrompt.visible = false
 
 func _process(_delta):
 	# Calling functions
@@ -95,6 +97,7 @@ func hug():
 	player_sprite.play("Hug")
 	#GameManager.add_score()
 	huggable_body.hug()
+	$HugPrompt.visible = false
 	#huggable_body.hug_sprite.play("Hugged")
 
 func let_go():
@@ -159,10 +162,13 @@ func _on_area_2d_hug_area_entered(area): # within reach of a huggable npc
 	if area.is_in_group("Friend"):
 		huggable_body = area.get_parent()
 		can_hug = true
+		$HugPrompt.visible = true
+		$HugPrompt.play("default")
 
 func _on_area_2d_hug_area_exited(area): # not within reach of huggable npc
 	if area.is_in_group("Friend"):
 		can_hug = false
+		$HugPrompt.visible = false
 
 
 

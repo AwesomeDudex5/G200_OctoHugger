@@ -317,7 +317,6 @@ texture = ExtResource("13_680v1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ascend Zone"]
 position = Vector2(54.4989, -216.697)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y38ca")
 
 [node name="AscendZoneParticles" parent="Level/Ascend Zone/CollisionShape2D" instance=ExtResource("12_82myr")]
@@ -424,7 +423,6 @@ position = Vector2(1270, 57)
 script = ExtResource("18_eowax")
 
 [node name="Gate Sprite" type="Sprite2D" parent="Gate"]
-position = Vector2(0, 262)
 texture = ExtResource("13_680v1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gate"]
