@@ -48,7 +48,7 @@ func _on_area_entered(area):
 		print("Deteced Player")
 
 # it's Kai I added these: --------------------------------------------------------------------
-func _on_detection_area_body_entered(body): # i think this could work, this is the "Detection Area"
+func _on_detection_area_body_entered(body):
 	if body.is_in_group("Player"):
 		print("Detected Player")
 		
