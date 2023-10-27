@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://o8geqpdtrl37"]
+
+[ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_nohmj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o11j6"]
+atlas = ExtResource("1_nohmj")
+region = Rect2(0, 5120, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3qvl"]
+atlas = ExtResource("1_nohmj")
+region = Rect2(1024, 5120, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s62ao"]
+atlas = ExtResource("1_nohmj")
+region = Rect2(2048, 5120, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iabj"]
+atlas = ExtResource("1_nohmj")
+region = Rect2(1024, 5120, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nm76q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o11j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3qvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s62ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iabj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Seaweed_Purple" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nm76q")
+autoplay = "default"
+frame_progress = 0.937342

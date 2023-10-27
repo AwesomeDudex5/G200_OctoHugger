@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c15r4kh7bcwkj"]
+
+[ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_vwfev"]
+[ext_resource type="Script" path="res://Scripts/Fish.gd" id="2_o6poh"]
+
+[node name="Fish_01" type="Sprite2D"]
+texture = ExtResource("1_vwfev")
+hframes = 5
+vframes = 6
+frame = 12
+script = ExtResource("2_o6poh")

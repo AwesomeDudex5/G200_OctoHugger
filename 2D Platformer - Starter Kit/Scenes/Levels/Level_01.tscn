@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=46 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://clfi3onegcb4m" path="res://Scenes/Prefabs/Hooks.tscn" id="6_tfmln"]
 [ext_resource type="Texture2D" uid="uid://ok8bc6qmqm87" path="res://Assets/Spritesheet/underwater-fantasy-files/underwater-fantasy-files/PNG/layers/foregound-merged.png" id="6_ypi5g"]
 [ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="7_58k6o"]
+[ext_resource type="PackedScene" uid="uid://c15r4kh7bcwkj" path="res://Scenes/Prefabs/fish.tscn" id="8_blel8"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
 [ext_resource type="Texture2D" uid="uid://djtbyhghowwxs" path="res://Assets/Spritesheet/BG_sea_tiles.png" id="10_ol1mr"]
 [ext_resource type="Texture2D" uid="uid://ds1v7mlqvy1e7" path="res://Assets/Spritesheet/Arrow_TMP.png" id="11_v06qc"]
@@ -303,6 +304,13 @@ position = Vector2(51.9999, -275)
 scale = Vector2(5.88, 5.88)
 texture = ExtResource("6_ypi5g")
 
+[node name="Fish" type="Node2D" parent="Level"]
+position = Vector2(976, 153)
+scale = Vector2(0.269531, 0.269531)
+
+[node name="Fish_01" parent="Level/Fish" instance=ExtResource("8_blel8")]
+scale = Vector2(1, 1)
+
 [node name="Ground" type="TileMap" parent="Level" groups=["Ground"]]
 tile_set = SubResource("TileSet_ywwrl")
 format = 2
@@ -487,31 +495,26 @@ z_index = -1
 
 [node name="Moray Eel" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(3358, 1020)
-moveSpeed = 175.0
 
 [node name="Moray Eel2" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(6120, 982)
 rotation = -2.55299
 scale = Vector2(0.320001, -0.312362)
-moveSpeed = 175.0
 
 [node name="Moray Eel3" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(11196, 2865)
 rotation = 3.12878
 scale = Vector2(0.320001, -0.312362)
-moveSpeed = 175.0
 
 [node name="Moray Eel4" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(8618, 2306)
 rotation = -0.0128172
 scale = Vector2(0.323529, 0.312362)
-moveSpeed = 175.0
 
 [node name="Moray Eel5" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(11444, 577)
 rotation = 2.6264
 scale = Vector2(0.27027, -0.312362)
-moveSpeed = 175.0
 
 [node name="TutorialText" type="Node2D" parent="."]
 
@@ -622,6 +625,7 @@ unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
