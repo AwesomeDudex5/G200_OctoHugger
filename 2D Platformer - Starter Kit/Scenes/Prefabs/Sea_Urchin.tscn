@@ -9,11 +9,11 @@ radius = 55.7315
 [node name="SeaUrchin" type="Area2D" groups=["Traps"]]
 
 [node name="SeaUrchin1" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_reh7j")
 
 [node name="SeaUrchin2" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_i5jvi")
 

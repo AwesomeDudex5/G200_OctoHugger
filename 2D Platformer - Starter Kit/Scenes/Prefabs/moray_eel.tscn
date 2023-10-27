@@ -36,12 +36,14 @@ scale = Vector2(0.320001, 0.320001)
 script = ExtResource("1_6vcq4")
 
 [node name="Detection Area" type="Area2D" parent="."]
+position = Vector2(-18.7499, 93.7497)
+scale = Vector2(1.10178, 1.10178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area"]
 position = Vector2(446.874, -87.4997)
 shape = SubResource("CircleShape2D_q7mh1")
 
-[node name="Hurt Area" type="Area2D" parent="."]
+[node name="Hurt Area" type="Area2D" parent="." groups=["Traps"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt Area"]
 position = Vector2(-784.373, -3.125)

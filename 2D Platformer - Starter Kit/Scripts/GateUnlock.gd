@@ -5,6 +5,8 @@ var numberOfFriendSaved : float = 0
 
 @onready var animationPlayer = $AnimationPlayer
 
+@onready var newSpawnPoint = $NextSpawnPoint
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.connect("savedFriend", updateGateCount)
@@ -19,8 +21,8 @@ func updateGateCount(friendSaved):
 	numberOfFriendSaved = friendSaved
 	if(numberToUnlock <= numberOfFriendSaved):
 		animationPlayer.play("Unlock_Animation")
-	$RigidBody2D/CollisionShape2D.disabled = true
-	$RigidBody2D/CollisionShape2D.set_deferred("disabled", true)
-	$RigidBody2D/CollisionShape2D.visible = false
-	print("Collison ", $RigidBody2D/CollisionShape2D.disabled)
+		GameManager.emit_signal("setNewSpawnPoint", newSpawnPoint)
+		$RigidBody2D/CollisionShape2D.disabled = true
+		$RigidBody2D/CollisionShape2D.set_deferred("disabled", true)
+		$RigidBody2D/CollisionShape2D.visible = false
 

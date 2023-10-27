@@ -36,6 +36,7 @@ var hug_count: int = 0
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 func _ready():
+	GameManager.connect("setNewSpawnPoint", set_new_spawn_point)
 	$HugPrompt.visible = false
 
 func _process(_delta):
@@ -173,5 +174,8 @@ func _on_area_2d_hug_area_exited(area): # not within reach of huggable npc
 		can_hug = false
 		$HugPrompt.visible = false
 
+func set_new_spawn_point(newSpawn):
+	print("Setting New Spawn")
+	spawn_point = newSpawn
 
 
