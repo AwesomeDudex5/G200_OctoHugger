@@ -11,7 +11,7 @@ point_count = 3
 offsets = PackedFloat32Array(0, 0.632312, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="CPUParticles2D" type="CPUParticles2D"]
+[node name="AscendParticles" type="CPUParticles2D"]
 position = Vector2(0.18623, -4.57153)
 amount = 150
 texture = ExtResource("1_yigg4")
