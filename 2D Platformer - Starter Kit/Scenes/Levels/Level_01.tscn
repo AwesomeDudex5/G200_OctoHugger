@@ -309,7 +309,9 @@ position = Vector2(976, 153)
 scale = Vector2(0.269531, 0.269531)
 
 [node name="Fish_01" parent="Level/Fish" instance=ExtResource("8_blel8")]
+position = Vector2(-5000, 0)
 scale = Vector2(1, 1)
+frame = 13
 
 [node name="Ground" type="TileMap" parent="Level" groups=["Ground"]]
 tile_set = SubResource("TileSet_ywwrl")

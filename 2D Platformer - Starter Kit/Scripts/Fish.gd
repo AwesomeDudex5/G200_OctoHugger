@@ -2,7 +2,7 @@ extends Sprite2D
 
 var move_direction: = 0
 
-@export var move_speed: int = 15
+@export var move_speed: int = 15	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
