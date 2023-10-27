@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=45 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
+[ext_resource type="Texture2D" uid="uid://8bkmep728mh3" path="res://Assets/Spritesheet/underwater-fantasy-files/underwater-fantasy-files/PNG/layers/sand.png" id="4_icmvt"]
 [ext_resource type="Texture2D" uid="uid://ch3jpl7ctigb8" path="res://Assets/Spritesheet/boat.png" id="4_m0rog"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
 [ext_resource type="Script" path="res://Scripts/AscendZone.gd" id="5_5o43u"]
@@ -388,7 +389,6 @@ rotation = 1.53209
 [node name="SeaUrchin6" parent="Level/Sea Urchins" instance=ExtResource("6_qfjix")]
 position = Vector2(7704, 878)
 rotation = -0.61012
-scale = Vector2(1, 1)
 
 [node name="SeaUrchin7" parent="Level/Sea Urchins" instance=ExtResource("6_qfjix")]
 position = Vector2(10745, 37.0001)
@@ -437,7 +437,6 @@ rotation = -3.10219
 [node name="SeaUrchin18" parent="Level/Sea Urchins" instance=ExtResource("6_qfjix")]
 position = Vector2(9456, 2378)
 rotation = -1.29176
-scale = Vector2(1, 1)
 
 [node name="Boats" type="Node2D" parent="Level"]
 
@@ -866,6 +865,36 @@ position = Vector2(10721, 2891)
 
 [node name="huggable_sprite14" parent="Friends" instance=ExtResource("15_dlo3l")]
 position = Vector2(9577, 911)
+
+[node name="Sand" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(471, 312)
+scale = Vector2(6.88, 6.88)
+texture = ExtResource("4_icmvt")
+
+[node name="Sand2" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(2183, 312)
+scale = Vector2(6.88, 6.88)
+texture = ExtResource("4_icmvt")
+
+[node name="Sand3" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(4185, 417)
+scale = Vector2(8.88, 9.04)
+texture = ExtResource("4_icmvt")
+
+[node name="Sand4" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(6448, 417)
+scale = Vector2(8.88, 9.04)
+texture = ExtResource("4_icmvt")
+
+[node name="Sand5" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(9991.5, 1198)
+scale = Vector2(18.8711, 20.7396)
+texture = ExtResource("4_icmvt")
 
 [connection signal="area_entered" from="Level/Ascend Zone" to="Level/Ascend Zone" method="_on_area_entered"]
 [connection signal="savedFriend" from="GameManager" to="Gate1" method="_on_game_manager_saved_friend"]
