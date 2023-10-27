@@ -369,6 +369,7 @@ position = Vector2(-0.18623, 20.5)
 shape = SubResource("RectangleShape2D_y38ca")
 
 [node name="AscendParticles" parent="Level/Ascend Zone/CollisionShape2D" instance=ExtResource("14_lv6pe")]
+visible = false
 
 [node name="No No Zone" type="Area2D" parent="Level" groups=["Traps"]]
 position = Vector2(6722, -258)

@@ -49,8 +49,8 @@ func _process(_delta):
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("Interact") and can_hug and not is_hugging:
 		hug()
-	elif Input.is_action_just_pressed("Interact") and is_hugging:
-		let_go()
+	#elif Input.is_action_just_pressed("Interact") and is_hugging:
+		#et_go()
 
 # --------- CUSTOM FUNCTIONS ---------- #
 
