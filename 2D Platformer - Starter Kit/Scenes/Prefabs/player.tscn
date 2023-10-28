@@ -297,7 +297,7 @@ position = Vector2(96, -25)
 scale = Vector2(3.21875, 3.21875)
 sprite_frames = SubResource("SpriteFrames_ir11s")
 
-[node name="deathSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="deathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_88jej")
 volume_db = -3.0
 
