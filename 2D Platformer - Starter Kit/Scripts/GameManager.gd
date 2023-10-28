@@ -29,7 +29,7 @@ func checkGate(numToUnlock):
 		return true
 	else:
 		return false
-
+		
 
 # Loads next level
 func load_next_level(next_scene : PackedScene):

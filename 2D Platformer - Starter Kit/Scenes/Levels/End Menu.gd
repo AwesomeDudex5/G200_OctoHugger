@@ -18,3 +18,5 @@ func setToVisible():
 
 func _on_button_pressed():
 	get_tree().reload_current_scene()
+	GameManager.friendSaved = 0
+	GameManager.score = 0 
