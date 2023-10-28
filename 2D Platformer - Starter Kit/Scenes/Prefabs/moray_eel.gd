@@ -3,6 +3,7 @@ extends Node2D
 @onready var animPlayer = $AnimationPlayer
 @onready var detectArea = $"Detection Area"
 @onready var hurtArea = $"Hurt Area"
+var originalDetecPosition
 
 @export var moveSpeed : float
 var originalPosition : Vector2
@@ -13,7 +14,7 @@ var isChasing : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	originalPosition = position
-	print("Original Pos: ", originalPosition)
+	originalDetecPosition = detectArea.global_position
 	animPlayer.play("default")
 	
 	detectArea.connect("area_entered", _on_detection_area_body_entered)
@@ -26,6 +27,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	detectArea.global_position = originalDetecPosition
 	if(isChasing == true):
 		targetPosition = playerBody.position
 		position = position.move_toward(targetPosition, delta * moveSpeed)

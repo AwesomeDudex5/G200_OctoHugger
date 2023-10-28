@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=50 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://cotegi663w7r7" path="res://Scenes/Prefabs/huggable_sprite.tscn" id="15_dlo3l"]
 [ext_resource type="Script" path="res://Scripts/GateUnlock.gd" id="18_eowax"]
 [ext_resource type="PackedScene" uid="uid://bjtc17yg4axpe" path="res://Scenes/Prefabs/moray_eel.tscn" id="19_lg60a"]
+[ext_resource type="Script" path="res://Scenes/Levels/End Menu.gd" id="25_tic76"]
+[ext_resource type="Texture2D" uid="uid://cbh7dqh1wfqah" path="res://Assets/Spritesheet/octohug.png" id="25_uy12t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g370"]
 texture = ExtResource("10_ol1mr")
@@ -206,7 +208,10 @@ sources/1 = SubResource("TileSetAtlasSource_5ohbe")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_05u5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
-size = Vector2(106.903, 41)
+size = Vector2(106.95, 128)
+
+[sub_resource type="SystemFont" id="SystemFont_7uk3q"]
+font_names = PackedStringArray("Comic Sans MS")
 
 [sub_resource type="SystemFont" id="SystemFont_7xsc2"]
 font_names = PackedStringArray("Comic Sans MS")
@@ -264,6 +269,48 @@ _data = {
 size = Vector2(106, 257)
 
 [node name="Level_01" type="Node2D"]
+
+[node name="huggable_sprite" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(571, 201)
+
+[node name="huggable_sprite2" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(2521, 98)
+
+[node name="huggable_sprite3" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(3836, 1052)
+
+[node name="huggable_sprite4" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(5773, 794)
+
+[node name="huggable_sprite5" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(4992, 189)
+
+[node name="huggable_sprite6" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(4990, 707)
+
+[node name="huggable_sprite7" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(7495, 806)
+
+[node name="huggable_sprite8" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(8743, 1063)
+
+[node name="huggable_sprite9" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(10819, 645)
+
+[node name="huggable_sprite10" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(10431, 1477)
+
+[node name="huggable_sprite11" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(11041, 5.00012)
+
+[node name="huggable_sprite12" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(9146, 2338)
+
+[node name="huggable_sprite13" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(10721, 2891)
+
+[node name="huggable_sprite14" parent="." instance=ExtResource("15_dlo3l")]
+position = Vector2(9577, 911)
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
 visible = false
@@ -352,8 +399,12 @@ scale = Vector2(-0.140005, 0.1)
 position = Vector2(9840, 173)
 scale = Vector2(-0.140005, 0.1)
 
+[node name="AscendParticles" parent="Level" instance=ExtResource("14_lv6pe")]
+position = Vector2(4657, -205)
+emission_rect_extents = Vector2(9000, 80)
+
 [node name="Ascend Zone" type="Area2D" parent="Level"]
-position = Vector2(9498, -214)
+position = Vector2(9498, -197)
 scale = Vector2(200, 1)
 monitorable = false
 script = ExtResource("5_5o43u")
@@ -366,11 +417,8 @@ scale = Vector2(1, 0.2)
 texture = ExtResource("12_nmkap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ascend Zone"]
-position = Vector2(-0.18623, 20.5)
+position = Vector2(-0.164993, -12)
 shape = SubResource("RectangleShape2D_y38ca")
-
-[node name="AscendParticles" parent="Level/Ascend Zone/CollisionShape2D" instance=ExtResource("14_lv6pe")]
-visible = false
 
 [node name="No No Zone" type="Area2D" parent="Level" groups=["Traps"]]
 position = Vector2(6722, -258)
@@ -546,9 +594,9 @@ Spacebar To Thrust"
 
 [node name="Press F to Hug" type="Label" parent="TutorialText"]
 offset_left = 498.0
-offset_top = 100.0
+offset_top = 275.0
 offset_right = 830.0
-offset_bottom = 226.0
+offset_bottom = 401.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
@@ -558,10 +606,10 @@ text = "F to Hug
 "
 
 [node name="Don\'t go too far up" type="Label" parent="TutorialText"]
-offset_left = 899.0
-offset_top = -164.0
-offset_right = 1231.0
-offset_bottom = -38.0
+offset_left = 819.0
+offset_top = -82.0
+offset_right = 1151.0
+offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
@@ -599,18 +647,15 @@ Moray eels  !!!"
 
 [node name="Ascend  Tutorial" type="Label" parent="TutorialText"]
 offset_left = 456.0
-offset_top = -74.0
+offset_top = -57.0
 offset_right = 798.0
-offset_bottom = 94.0
+offset_bottom = 111.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_gwcy2")
 theme_override_font_sizes/font_size = 32
-text = "Help spirit move on by 
-going to the 
-ascension zone
-with them"
+text = "Ascension Zone"
 
 [node name="ArrowTmp" type="Sprite2D" parent="TutorialText/Ascend  Tutorial"]
 position = Vector2(123.595, -58.5953)
@@ -661,6 +706,51 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_gwcy2")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
+
+[node name="End Menu" type="Control" parent="UserInterface"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("25_tic76")
+
+[node name="Button" type="Button" parent="UserInterface/End Menu"]
+z_index = 1
+layout_mode = 0
+offset_left = 654.0
+offset_top = 396.0
+offset_right = 714.0
+offset_bottom = 427.0
+scale = Vector2(1.55254, 1.55254)
+text = "Replay"
+
+[node name="UI Background" type="Sprite2D" parent="UserInterface/End Menu"]
+position = Vector2(704.5, 318.75)
+scale = Vector2(4.97222, 1.62941)
+texture = ExtResource("12_nmkap")
+
+[node name="Hug Sprite" type="Sprite2D" parent="UserInterface/End Menu"]
+position = Vector2(688, 322)
+scale = Vector2(0.120001, 0.120001)
+texture = ExtResource("25_uy12t")
+hframes = 2
+vframes = 4
+frame = 3
+
+[node name="Label" type="Label" parent="UserInterface/End Menu"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 145.0
+offset_right = 871.0
+offset_bottom = 269.0
+theme_override_colors/font_color = Color(0.545098, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_7uk3q")
+theme_override_font_sizes/font_size = 34
+text = "Congratulations!
+You saved them all !!!"
+horizontal_alignment = 1
 
 [node name="BubbleParticles" parent="." instance=ExtResource("13_hw8ol")]
 position = Vector2(0, 1000)
@@ -838,50 +928,6 @@ mass = 0.01
 shape = SubResource("RectangleShape2D_usdkh")
 debug_color = Color(0, 0.627451, 0.733333, 0.419608)
 
-[node name="Friends" type="Node2D" parent="."]
-
-[node name="huggable_sprite" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(571, 201)
-
-[node name="huggable_sprite2" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(2521, 98)
-
-[node name="huggable_sprite3" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(3836, 1052)
-
-[node name="huggable_sprite4" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(5773, 794)
-
-[node name="huggable_sprite5" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(4992, 189)
-
-[node name="huggable_sprite6" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(4990, 707)
-
-[node name="huggable_sprite7" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(7495, 806)
-
-[node name="huggable_sprite8" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(8743, 1063)
-
-[node name="huggable_sprite9" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(10819, 645)
-
-[node name="huggable_sprite10" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(10431, 1477)
-
-[node name="huggable_sprite11" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(11041, 5.00012)
-
-[node name="huggable_sprite12" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(9146, 2338)
-
-[node name="huggable_sprite13" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(10721, 2891)
-
-[node name="huggable_sprite14" parent="Friends" instance=ExtResource("15_dlo3l")]
-position = Vector2(9577, 911)
-
 [node name="Sand" type="Sprite2D" parent="."]
 z_index = -100
 position = Vector2(471, 312)
@@ -914,3 +960,4 @@ texture = ExtResource("4_icmvt")
 
 [connection signal="area_entered" from="Level/Ascend Zone" to="Level/Ascend Zone" method="_on_area_entered"]
 [connection signal="savedFriend" from="GameManager" to="Gate1" method="_on_game_manager_saved_friend"]
+[connection signal="pressed" from="UserInterface/End Menu/Button" to="UserInterface/End Menu" method="_on_button_pressed"]
