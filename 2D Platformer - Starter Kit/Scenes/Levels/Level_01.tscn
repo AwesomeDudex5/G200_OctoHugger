@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=53 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c23jf4ytibl3h" path="res://Assets/Spritesheet/Gate-placeholder.png" id="13_680v1"]
 [ext_resource type="PackedScene" uid="uid://cwybijrtyxaja" path="res://Scenes/Prefabs/bubble_particles.tscn" id="13_hw8ol"]
 [ext_resource type="Texture2D" uid="uid://bmkpdmdhhgepa" path="res://Assets/Spritesheet/octoGhost_UI.png" id="13_qnis4"]
+[ext_resource type="Texture2D" uid="uid://bkavwjevn4xli" path="res://Assets/Spritesheet/octoGhosts_and_stuff_128tile.png" id="14_6d2cp"]
 [ext_resource type="Texture2D" uid="uid://0ajkdfycyrui" path="res://Assets/Spritesheet/bubble_01.png" id="14_du53r"]
 [ext_resource type="PackedScene" uid="uid://bts5y15qgj75i" path="res://Scenes/Prefabs/AscendZoneParticles.tscn" id="14_lv6pe"]
 [ext_resource type="Texture2D" uid="uid://bkvd1kbrhk45o" path="res://Assets/Spritesheet/bubble_03.png" id="15_62d5k"]
@@ -205,6 +206,22 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_5ohbe")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j7ov"]
+texture = ExtResource("14_6d2cp")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_id3bj"]
+tile_size = Vector2i(128, 128)
+sources/1 = SubResource("TileSetAtlasSource_7j7ov")
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_05u5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y38ca"]
@@ -361,6 +378,11 @@ scale = Vector2(0.269531, 0.269531)
 position = Vector2(-5000, 0)
 frame = 13
 
+[node name="Fish_02" parent="Level/Fish" instance=ExtResource("8_blel8")]
+position = Vector2(597.334, -664.117)
+scale = Vector2(0.5, 0.5)
+frame = 14
+
 [node name="Ground" type="TileMap" parent="Level" groups=["Ground"]]
 tile_set = SubResource("TileSet_ywwrl")
 format = 2
@@ -402,6 +424,12 @@ scale = Vector2(-0.140005, 0.1)
 [node name="AscendParticles" parent="Level" instance=ExtResource("14_lv6pe")]
 position = Vector2(4657, -205)
 emission_rect_extents = Vector2(9000, 80)
+
+[node name="AscendZoneTiles" type="TileMap" parent="Level"]
+tile_set = SubResource("TileSet_id3bj")
+cell_quadrant_size = 128
+format = 2
+layer_0/tile_data = PackedInt32Array(-65539, 262145, 5, -65538, 262145, 5, -65537, 262145, 5, -131072, 262145, 5, -131071, 262145, 5, -131070, 262145, 5, -131069, 262145, 5, -131068, 262145, 5, -131067, 262145, 5, -131066, 262145, 5, -131065, 262145, 5, -131064, 262145, 5, -131063, 262145, 5, -131062, 262145, 5, -131061, 262145, 5, -131060, 262145, 5, -131059, 262145, 5, -131058, 262145, 5, -131057, 262145, 5, -131055, 262145, 5, -131054, 262145, 5, -131056, 262145, 5, -131053, 262145, 5, -131052, 262145, 5, -131051, 262145, 5, -131050, 262145, 5, -131049, 262145, 5, -131048, 262145, 5, -131047, 262145, 5, -131041, 262145, 5, -131040, 262145, 5, -131039, 262145, 5, -131038, 262145, 5, -131037, 262145, 5, -131032, 262145, 5, -131031, 262145, 5, -131030, 262145, 5, -131029, 262145, 5, -131028, 262145, 5, -131027, 262145, 5, -131026, 262145, 5, -131025, 262145, 5, -131024, 262145, 5, -131023, 262145, 5, -131008, 262145, 5, -131007, 262145, 5, -131006, 262145, 5, -131005, 262145, 5, -131004, 262145, 5, -131003, 262145, 5, -131002, 262145, 5, -131001, 262145, 5, -131000, 262145, 5, -130999, 262145, 5, -130998, 262145, 5, -130997, 262145, 5, -130996, 262145, 5, -130995, 262145, 5, -130994, 262145, 5, -130993, 262145, 5, -130992, 262145, 5, -130991, 262145, 5, -130990, 262145, 5, -130989, 262145, 5, -130988, 262145, 5, -130987, 262145, 5, -130986, 262145, 5, -130985, 262145, 5, -130984, 262145, 5, -130983, 262145, 5)
 
 [node name="Ascend Zone" type="Area2D" parent="Level"]
 position = Vector2(9498, -197)
