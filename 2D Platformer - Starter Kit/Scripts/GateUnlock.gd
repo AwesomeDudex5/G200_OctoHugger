@@ -7,6 +7,8 @@ var numberOfFriendSaved : float = 0
 
 @onready var newSpawnPoint = $NextSpawnPoint
 
+var sfx_played: = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.connect("savedFriend", updateGateCount)
@@ -25,4 +27,7 @@ func updateGateCount(friendSaved):
 		$RigidBody2D/CollisionShape2D.disabled = true
 		$RigidBody2D/CollisionShape2D.set_deferred("disabled", true)
 		$RigidBody2D/CollisionShape2D.visible = false
+		if not sfx_played:
+			$GateSFX.play()
+			sfx_played = true
 

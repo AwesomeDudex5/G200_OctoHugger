@@ -125,6 +125,7 @@ func flip_player():
 
 # Tween Animations
 func death_tween():
+	$deathSFX.play()
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
 	await tween.finished

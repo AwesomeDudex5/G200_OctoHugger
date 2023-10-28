@@ -35,7 +35,7 @@ radius = 55.7315
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_flvu4")
 autoplay = "default"
-frame_progress = 0.408991
+frame_progress = 0.848577
 
 [node name="SeaUrchin1" type="Sprite2D" parent="."]
 visible = false

@@ -61,6 +61,7 @@ func hug():
 	hugged = true
 	canMove = 0
 	visible = false
+	$SqueakSFX.play()
 	#print("hugged")
 
 func let_go():
@@ -76,6 +77,7 @@ func let_go():
 func set_ascending():
 	reachedAscendZone = true
 	canMove = 0
+	$AscendSFX.play()
 
 
 func _on_timer_timeout(): # release it from memory after 5 sec

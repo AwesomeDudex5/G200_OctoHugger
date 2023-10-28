@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cotegi663w7r7"]
+[gd_scene load_steps=13 format=3 uid="uid://cotegi663w7r7"]
 
 [ext_resource type="Texture2D" uid="uid://ds0i28ukvytos" path="res://Assets/Spritesheet/octoGhosts_and_stuff.png" id="1_pcs2j"]
 [ext_resource type="Script" path="res://Scripts/huggable_sprite.gd" id="2_kpt7k"]
+[ext_resource type="AudioStream" uid="uid://cfmhe4w2cc8sg" path="res://Assets/Sound/FX/squeak_toy-skiffy.wav" id="3_mjqsa"]
+[ext_resource type="AudioStream" uid="uid://d0a5gapkav15y" path="res://Assets/Sound/FX/ascend.ogg" id="3_ty4p1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_on70m"]
 atlas = ExtResource("1_pcs2j")
@@ -71,6 +73,14 @@ shape = SubResource("CapsuleShape2D_cops2")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="AscendSFX" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1, 1)
+stream = ExtResource("3_ty4p1")
+volume_db = -3.0
+
+[node name="SqueakSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mjqsa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

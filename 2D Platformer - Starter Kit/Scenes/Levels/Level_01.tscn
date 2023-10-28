@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://65fn3keytdew"]
+[gd_scene load_steps=55 format=3 uid="uid://65fn3keytdew"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://bjtc17yg4axpe" path="res://Scenes/Prefabs/moray_eel.tscn" id="19_lg60a"]
 [ext_resource type="Script" path="res://Scenes/Levels/End Menu.gd" id="25_tic76"]
 [ext_resource type="Texture2D" uid="uid://cbh7dqh1wfqah" path="res://Assets/Spritesheet/octohug.png" id="25_uy12t"]
+[ext_resource type="AudioStream" uid="uid://dn1gta3c0432i" path="res://Assets/Sound/FX/gate-open.ogg" id="33_arx7h"]
+[ext_resource type="AudioStream" uid="uid://dwirsqgks0yix" path="res://Assets/Sound/BGM/float_hug_theme_pp_LOOP.ogg" id="33_ejja0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g370"]
 texture = ExtResource("10_ol1mr")
@@ -287,46 +289,48 @@ size = Vector2(106, 257)
 
 [node name="Level_01" type="Node2D"]
 
-[node name="huggable_sprite" parent="." instance=ExtResource("15_dlo3l")]
+[node name="Huggables" type="Node2D" parent="."]
+
+[node name="huggable_sprite" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(571, 201)
 
-[node name="huggable_sprite2" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite2" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(2521, 98)
 
-[node name="huggable_sprite3" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite3" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(3836, 1052)
 
-[node name="huggable_sprite4" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite4" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(5773, 794)
 
-[node name="huggable_sprite5" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite5" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(4992, 189)
 
-[node name="huggable_sprite6" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite6" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(4990, 707)
 
-[node name="huggable_sprite7" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite7" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(7495, 806)
 
-[node name="huggable_sprite8" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite8" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(8743, 1063)
 
-[node name="huggable_sprite9" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite9" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(10819, 645)
 
-[node name="huggable_sprite10" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite10" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(10431, 1477)
 
-[node name="huggable_sprite11" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite11" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(11041, 5.00012)
 
-[node name="huggable_sprite12" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite12" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(9146, 2338)
 
-[node name="huggable_sprite13" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite13" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(10721, 2891)
 
-[node name="huggable_sprite14" parent="." instance=ExtResource("15_dlo3l")]
+[node name="huggable_sprite14" parent="Huggables" instance=ExtResource("15_dlo3l")]
 position = Vector2(9577, 911)
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
@@ -453,6 +457,7 @@ position = Vector2(6722, -258)
 scale = Vector2(149.758, 0.109369)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/No No Zone"]
+visible = false
 texture = ExtResource("13_680v1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/No No Zone"]
@@ -876,6 +881,10 @@ mass = 0.01
 shape = SubResource("RectangleShape2D_usdkh")
 debug_color = Color(0, 0.627451, 0.733333, 0.419608)
 
+[node name="GateSFX" type="AudioStreamPlayer" parent="Gate1"]
+stream = ExtResource("33_arx7h")
+volume_db = -1.0
+
 [node name="Gate2" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(3400, 384)
@@ -915,6 +924,10 @@ mass = 0.01
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gate2/RigidBody2D"]
 shape = SubResource("RectangleShape2D_usdkh")
 debug_color = Color(0, 0.627451, 0.733333, 0.419608)
+
+[node name="GateSFX" type="AudioStreamPlayer" parent="Gate2"]
+stream = ExtResource("33_arx7h")
+volume_db = -1.0
 
 [node name="Gate3" type="Node2D" parent="."]
 z_index = -1
@@ -956,6 +969,10 @@ mass = 0.01
 shape = SubResource("RectangleShape2D_usdkh")
 debug_color = Color(0, 0.627451, 0.733333, 0.419608)
 
+[node name="GateSFX" type="AudioStreamPlayer" parent="Gate3"]
+stream = ExtResource("33_arx7h")
+volume_db = -1.0
+
 [node name="Sand" type="Sprite2D" parent="."]
 z_index = -100
 position = Vector2(471, 312)
@@ -985,6 +1002,10 @@ z_index = -100
 position = Vector2(9991.5, 1198)
 scale = Vector2(18.8711, 20.7396)
 texture = ExtResource("4_icmvt")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_ejja0")
+autoplay = true
 
 [connection signal="area_entered" from="Level/Ascend Zone" to="Level/Ascend Zone" method="_on_area_entered"]
 [connection signal="savedFriend" from="GameManager" to="Gate1" method="_on_game_manager_saved_friend"]
