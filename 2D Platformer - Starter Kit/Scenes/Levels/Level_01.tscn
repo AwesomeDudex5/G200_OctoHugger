@@ -359,6 +359,7 @@ monitorable = false
 script = ExtResource("5_5o43u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Ascend Zone"]
+visible = false
 material = SubResource("CanvasItemMaterial_05u5o")
 position = Vector2(0, 18.2864)
 scale = Vector2(1, 0.2)
@@ -501,26 +502,31 @@ z_index = -1
 
 [node name="Moray Eel" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(3358, 1020)
+moveSpeed = 150.0
 
 [node name="Moray Eel2" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(6120, 982)
 rotation = -2.55299
 scale = Vector2(0.320001, -0.312362)
+moveSpeed = 150.0
 
 [node name="Moray Eel3" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(11196, 2865)
 rotation = 3.12878
 scale = Vector2(0.320001, -0.312362)
+moveSpeed = 150.0
 
 [node name="Moray Eel4" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(8618, 2306)
 rotation = -0.0128172
 scale = Vector2(0.323529, 0.312362)
+moveSpeed = 150.0
 
 [node name="Moray Eel5" parent="Level/Moray Eels" instance=ExtResource("19_lg60a")]
 position = Vector2(11444, 577)
 rotation = 2.6264
 scale = Vector2(0.27027, -0.312362)
+moveSpeed = 150.0
 
 [node name="TutorialText" type="Node2D" parent="."]
 
